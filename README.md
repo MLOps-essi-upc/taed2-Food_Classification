@@ -18,5 +18,13 @@ Test split:
 
 ## Model Card
 
+### The Model
+
+### Intended Use
+
+### Training Parameters
+
+### Evaluation Results
+
 
 
