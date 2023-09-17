@@ -10,8 +10,11 @@ The dataset consists of 101 food categories.
 
 Train split:
 
-- 7575
+- Number of examples: 7575.
 
 Test split:
 
-- 25250
+- Number of examples: 25250.
+
+
+
