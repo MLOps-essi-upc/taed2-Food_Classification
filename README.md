@@ -6,4 +6,12 @@
 
 ## Dataset Card
 
-The dataset consists of 101 food categories 
+The dataset consists of 101 food categories.
+
+Train split:
+
+- 7575
+
+Test split:
+
+- 25250
