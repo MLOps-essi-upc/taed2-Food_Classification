@@ -1,5 +1,7 @@
 # TAED2-Img_Classification
 
-Coses
+## Food Classification
 
-## DATASET CARD
+
+
+## Dataset Card
