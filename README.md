@@ -5,3 +5,5 @@
 
 
 ## Dataset Card
+
+The dataset consists of 101 food categories 
