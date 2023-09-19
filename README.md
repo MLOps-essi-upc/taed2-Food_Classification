@@ -1,7 +1,7 @@
 # TAED2-Img_Classification
 
 ## Introduction
-The purpose of the project is to gain a deeper understanding of managing ML projects. To achieve this, we are encouraged to build and deploy an ML component. With this goal in mind, our project consists of an image classification, in particular, a neural net that classifies accurately food images. The dataset used in all the simulations is sourced from https://huggingface.co/datasets/food101#license-agreement
+The purpose of the project is to gain a deeper understanding of managing ML projects. To achieve this, we are encouraged to build and deploy an ML component. With this goal in mind, our project consists of an image classification, in particular, a neural net that classifies accurately food images. The dataset used in all the simulations is sourced from: https://huggingface.co/datasets/food101#license-agreement
 
 
 ## Dataset Card
