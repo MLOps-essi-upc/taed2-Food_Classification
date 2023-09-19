@@ -18,7 +18,9 @@ Test split:
 
 Language: English.
 
+### Downsizing of a Large Dataset
 
+Due to the dataset's large size and significant weight in terms of data volume, we've undertaken a reduction process. Specifically, out of the initial 101,000 samples, we've retained 30,000 samples. Consequently, instead of the original 101 classes, we now have 30 classes, each comprising 1,000 images. This reduction was implemented to alleviate the challenges posed by the dataset's immense size.
 
 ## Model Card
 The model we aimed to use is a neural network for image classification. There are a vast of architectures that we could use. 
