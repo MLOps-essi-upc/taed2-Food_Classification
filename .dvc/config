@@ -1,2 +1,4 @@
 [core]
     autostage = true
+['remote "origin"']
+    url = https://dagshub.com/violeta51/taed2-Food_Classification.dvc
