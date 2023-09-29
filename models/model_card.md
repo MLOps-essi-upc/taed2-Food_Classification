@@ -7,14 +7,14 @@ We are going to use a ResNet architecture to handle image classification tasks. 
 In a summarized manner, ResNet-50 consists of 48 convolutional layers, one MaxPool layer, and one average pool layer. Residual Network takes part in the artificial neural network (ANN) that forms networks by stacking residual blocks.
 
 Technical specifications:
-    - Developed by: Microsoft Research (Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun)
-    - Model type: Image classification / feature backbone (Convolutional Neural Network)
-    - Language(s): -
-    - License: Apache License for TensorFlow, BSD license for PyTorch, etc.
-    - Parent Model: ResNet-50 is a variant of the original ResNet architecture
-    - Papers:
-        - ResNet strikes back: An improved training procedure in timm: https://arxiv.org/abs/2110.00476
-        - Deep Residual Learning for Image Recognition: https://arxiv.org/abs/1512.03385
+- Developed by: Microsoft Research (Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun)
+- Model type: Image classification / feature backbone (Convolutional Neural Network)
+- Language(s): -
+- License: Apache License for TensorFlow, BSD license for PyTorch, etc.
+- Parent Model: ResNet-50 is a variant of the original ResNet architecture
+- Papers:
+    - ResNet strikes back: An improved training procedure in timm: https://arxiv.org/abs/2110.00476
+    - Deep Residual Learning for Image Recognition: https://arxiv.org/abs/1512.03385
     
 
 #### Model Usage
