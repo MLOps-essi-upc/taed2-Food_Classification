@@ -30,10 +30,10 @@ Despite the strengths of the model, it also has limitations, such as complexity,
 - GMACs: 4.1
 - Activations (M): 11.1
 
-
-#### Training Data
+#### Datasets
+##### Training Data
 The dataset we pretend to feed the model is a reduced version of the original one ("Food101"). Initially, it consists of 101 categories, each with 1000 training samples (images). Nevertheless, due to the lack of resources, we decided to simplify the problem by reducing the number of classes, that is, we preserved only the first 30 categories and samples. In this way, we managed to obtain a derived dataset with only 30,000 images for training. Despite this incise, the model is perfectly scalable: if we feed the model with more categories, it will be able to learn from them and recognize more types of food.
-
+##### Test Data
 
 
 #### Evaluation Results
