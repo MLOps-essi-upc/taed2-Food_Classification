@@ -3,6 +3,9 @@
 ### ResNet-50
 We are going to use a ResNet architecture to handle image classification tasks. To be more specific, we opted to apply a ResNet-50, which comes from Residual Network. It is a convolutional neural network that can be really useful for power computer vision tasks. This type of CNN was proposed in the 2015 paper “Deep Residual Learning for Image Recognition” by Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 
+ResNet was designed to address the limitations of VGG-styled CNNs. In their paper, the authors demonstrated that adding more layers of convolution does not necessarily lead to an increase in validation accuracy; in fact, in most cases, the metrics decrease. In other words, once a certain limit is reached, the model stops improving. This is why they introduced "skip connections" as a solution proposal.
+
+
 #### Model Details
 In a summarized manner, ResNet-50 consists of 48 convolutional layers, one MaxPool layer, and one average pool layer. Residual Network takes part in the artificial neural network (ANN) that forms networks by stacking residual blocks.
 
@@ -19,16 +22,29 @@ Technical specifications:
 
 #### Model Usage
 The model can be used for image classification, feature map extraction, image embeddings and among others.
+ResNet has achieved state-of-the-art results on various computer vision tasks, including image classification, object detection, and semantic segmentation. In the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) 2015, the ResNet-152 architecture achieved a top-5 error rate of 3.57%, significantly better than the previous state-of-the-art error rate of 3.57%
 
-In our project, it will be destinated to learn image classification tasks.
+The reasons for why we use this network for image classification are:
+- Deeper networks can be built with Resnet.
+- Performance metrics improvement
+- Faster training and better convergence to the optimal solution.
+- Transfer learning
+
 
 #### Potential limitations
-Despite the strengths of the model, it also has limitations, such as complexity, susceptibility to overfitting, and limited interpretability.
+
+The model also presents limitations:
+- Complexity: The presence of hop connections makes ResNets more complex than traditional deep neural networks, which can lead to higher computational demands and memory requirements.
+- Susceptibility to overfitting
+- Limited interpretability.
+- Implementation of Batch normalization layers since ResNet heavily depends on it. 
+
 
 #### Training Parameters
 - Params (M): 25.6
 - GMACs: 4.1
 - Activations (M): 11.1
+
 
 #### Datasets
 ##### Training Data
