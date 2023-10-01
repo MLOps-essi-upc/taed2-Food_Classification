@@ -24,7 +24,7 @@ Technical specifications:
 The model can be used for image classification, feature map extraction, image embeddings and among others.
 ResNet has achieved state-of-the-art results on various computer vision tasks, including image classification, object detection, and semantic segmentation. In the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) 2015, the ResNet-152 architecture achieved a top-5 error rate of 3.57%, significantly better than the previous state-of-the-art error rate of 3.57%
 
-The reasons for why we use this network for image classification are:
+TThe reasons why we opt for using this network for image classification are:
 - Deeper networks can be built with Resnet.
 - Performance metrics improvement
 - Faster training and better convergence to the optimal solution.
