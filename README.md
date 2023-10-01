@@ -5,9 +5,9 @@ This repository contains the project for "Advanced Data Science Topics II" cours
 
 **Project Insights: Dataset and Model Cards**
 
-- Dataset Card: https://github.com/MLOps-essi-upc/taed2-Food_Classification/blob/main/dataset_card.md
+- [Dataset Card](https://github.com/MLOps-essi-upc/taed2-Food_Classification/blob/main/dataset_card.md)
 
-- Model Card: https://github.com/MLOps-essi-upc/taed2-Food_Classification/blob/main/model_card.md
+- [Model Card](https://github.com/MLOps-essi-upc/taed2-Food_Classification/blob/main/model_card.md)
 
 Project Organization
 ------------

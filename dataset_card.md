@@ -28,11 +28,13 @@ label: an int classification label.
 
 
 #### Data Splits
-Train split:
-• Number of examples: 22.500.
+Train split: 
+
+- Number of examples: 22.500.
 
 Test split:
-• Number of examples: 7.500.
+
+- Number of examples: 7.500.
 
 
 ### Addtional Information
