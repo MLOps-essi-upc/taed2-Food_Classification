@@ -13,11 +13,12 @@ Language: English.
 A data instance refers to an image that is categorized within one of the 30 distinct classes. Each individual image is inside a directory whose name aligns with the corresponding class it represents.
 
 Example: 
+```
 {
   'image': <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=384x512 at 0x276021C5EB8>,
   'label': 23
 }
-
+```
 
 #### Data fields
 The data instances have the following fields:
@@ -43,11 +44,11 @@ The Food-101 data set consists of images from Foodspotting [1] which are not pro
 
 
 #### Citation Information
-
+```
 @inproceedings{bossard14,
   title = {Food-101 -- Mining Discriminative Components with Random Forests},
   author = {Bossard, Lukas and Guillaumin, Matthieu and Van Gool, Luc},
   booktitle = {European Conference on Computer Vision},
   year = {2014}
 }
-
+```
