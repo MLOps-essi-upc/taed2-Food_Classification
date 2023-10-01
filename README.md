@@ -1,7 +1,14 @@
 TAED2-Food Classification
 ==============================
 
-This repository contains the project for "Advanced Data Science Topics II" course at Universitat Politècnica de Catalunya (UPC). The purpose of the project is to gain a deeper understanding of managing ML projects. To achieve this, we are encouraged to build and deploy an ML component. With this goal in mind, our project consists of an image classification, in particular, a neural net that classifies accurately food images. The dataset used in all the simulations is sourced from Hugging Face\: https://huggingface.co/datasets/food101.
+This repository contains the project for "Advanced Data Science Topics II" course at Universitat Politècnica de Catalunya (UPC). The purpose of the project is to gain a deeper understanding of managing ML projects. To achieve this, we are encouraged to build and deploy an ML component.
+
+With a strong emphasis on practical application, our project consists of an image classification tool. Specifically, a neural network capable of accurately classifying food images. 
+
+In addition to the core image classification task, our project encompasses a comprehensive documentation and reporting framework. This documentation will provide a holistic view of the ML project lifecycle, including critical aspects such as data acquisition, preprocessing, model selection, training, evaluation, and deployment strategies.
+
+The ultimate aim of our project is to make a meaningful contribution to the field of food image classification. This contribution could have far-reaching implications, such as knowing meaningful information about dishes or aiding in dietary assessment. Moreover, this project offers invaluable hands-on experience in managing real-world ML projects, a skillset that holds immense importance in the dynamic field of data science.
+
 
 **Project Insights: Dataset and Model Cards**
 
