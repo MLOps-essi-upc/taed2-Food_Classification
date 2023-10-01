@@ -53,3 +53,7 @@ The Food-101 data set consists of images from [Foodspotting](http://www.foodspot
   year = {2014}
 }
 ```
+
+#### Contributions
+
+Thanks to @nateraw for adding this dataset.

@@ -16,8 +16,8 @@ Technical specifications:
 - License: Apache License for TensorFlow, BSD license for PyTorch, etc.
 - Parent Model: ResNet-50 is a variant of the original ResNet architecture
 - Papers:
-    - ResNet strikes back: An improved training procedure in timm: https://arxiv.org/abs/2110.00476
-    - Deep Residual Learning for Image Recognition: https://arxiv.org/abs/1512.03385
+    - [ResNet strikes back: An improved training procedure in timm](https://arxiv.org/abs/2110.00476)
+    - [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
     
 
 #### Model Usage
@@ -35,7 +35,7 @@ TThe reasons why we opt for using this network for image classification are:
 
 The model also presents limitations:
 - Complexity: The presence of hop connections makes ResNets more complex than traditional deep neural networks, which can lead to higher computational demands and memory requirements.
-- Susceptibility to overfitting
+- Susceptibility to overfitting.
 - Limited interpretability.
 - Implementation of Batch normalization layers since ResNet heavily depends on it. 
 
@@ -56,8 +56,8 @@ Since we have a uniquely reduced version of the dataset, we have decided to spli
 
 #### Evaluation Results
 Model settings:
-- batch_size: 64
-- epochs: 20
+- Batch size: 64
+- Epochs: 20
 - Optimizer: Adam
 - Loss Function: Cross Entropy
 - Transfer Learning: No
