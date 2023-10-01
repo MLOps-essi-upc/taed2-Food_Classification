@@ -47,12 +47,29 @@ The model also presents limitations:
 
 
 #### Datasets
-##### Training Data
+
 The dataset we pretend to feed the model is a reduced version of the original one ("Food101"). Initially, it consists of 101 categories, each with 1000 training samples (images). Nevertheless, due to the lack of resources, we decided to simplify the problem by reducing the number of classes, that is, we preserved only the first 30 categories and samples. In this way, we managed to obtain a derived dataset with only 30,000 images for training. Despite this incise, the model is perfectly scalable: if we feed the model with more categories, it will be able to learn from them and recognize more types of food.
-##### Test Data
+
+##### Training-Validation Data
+Since we have a uniquely reduced version of the dataset, we have decided to split it into Training and Validation Data, with sizes of 20,000 and 10,000 images respectively.
 
 
 #### Evaluation Results
+Model settings:
+- batch_size: 64
+- epochs: 20
+- Optimizer: Adam
+- Loss Function: Cross Entropy
+- Transfer Learning: No
+
+Model metrics (of the last epoch):
+- Training Loss: 1.447
+- Evaluation Loss: 1.801
+- Training Accuracy: 57.94
+- Evaluation Accuracy: 47.39
+
+Finally, in terms of the model's performance, it achieves a validation accuracy of 47% using images without applying any form of data augmentation. Consequently, implementing this approach is expected to enhance the robustness and accuracy of machine learning models, enabling them to perform effectively even with limited and inadequately representative data.
+
 
 
 
