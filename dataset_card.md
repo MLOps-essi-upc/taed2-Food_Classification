@@ -1,9 +1,9 @@
 ## Dataset Card
 
 ### Dataset Summary
-The dataset that we have used has been extracted from "Food 101" (https://huggingface.co/datasets/food101), which has a large and significant weight in terms of data volume, as it contains 101 classes (and 101,000 images). Thus, we have undertaken a reduction process to simplify the problem, but maintaining the same structure and final goal. 
+The dataset that we have used has been extracted from ["Hugging Face - Food 101"](https://huggingface.co/datasets/food101). The remarkable fact about this dataset is that it has a large and significant weight in terms of data volume, as it contains 101 classes (101,000 images in total). Thus, we have undertaken a reduction process to simplify the problem, but maintaining the same structure and final goal. 
 
-The reduced dataset consists of 30 food categories and 30.000 images (1.000 images of each class). For each class, 250 manually reviewed test images are provided as well as 750 training images. On purpose, the training images were not cleaned, and thus still contain some amount of noise. This comes mostly in the form of intense colors and sometimes wrong labels. All images were rescaled to have a maximum side length of 512 pixels.
+The reduced dataset consists of 30 food categories and 30.000 images in total (1.000 images of each class). For each class, 250 manually reviewed test images are provided as well as 750 training images. On purpose, the training images were not cleaned, and thus still contain some amount of noise. This comes mostly in the form of intense colors and sometimes wrong labels. All images were rescaled to have a maximum side length of 512 pixels.
 
 Language: English.
 
@@ -23,8 +23,8 @@ Example:
 #### Data fields
 The data instances have the following fields:
 
-image: A PIL.Image.Image object containing the image. Note that when accessing the image column: dataset[0]["image"] the image file is automatically decoded. Decoding of a large number of image files might take a significant amount of time. Thus it is important to first query the sample index before the "image" column, i.e. dataset[0]["image"] should always be preferred over dataset["image"][0].
-label: an int classification label.
+- image: A PIL.Image.Image object containing the image. Note that when accessing the image column: dataset[0]["image"] the image file is automatically decoded. Decoding of a large number of image files might take a significant amount of time. Thus it is important to first query the sample index before the "image" column, i.e. dataset[0]["image"] should always be preferred over dataset["image"][0].
+- label: an int classification label.
 
 
 #### Data Splits
@@ -41,8 +41,7 @@ Test split:
 
 #### LICENSE AGREEMENT
 
-The Food-101 data set consists of images from Foodspotting [1] which are not property of the Federal Institute of Technology Zurich (ETHZ). Any use beyond scientific fair use must be negociated with the respective picture owners according to the Foodspotting terms of use [2].
-[1] http://www.foodspotting.com/ [2] http://www.foodspotting.com/terms/
+The Food-101 data set consists of images from [Foodspotting](http://www.foodspotting.com/) which are not property of the Federal Institute of Technology Zurich (ETHZ). Any use beyond scientific fair use must be negociated with the respective picture owners according to the [Foodspotting terms of use](http://www.foodspotting.com/terms/).
 
 
 #### Citation Information
