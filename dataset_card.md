@@ -1,7 +1,6 @@
 ## Dataset Card
 
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
 - [Dataset Description](#dataset-description)
   - [Dataset Summary](#dataset-summary)
   - [Supported Tasks and Leaderboards](#supported-tasks-and-leaderboards)
@@ -10,6 +9,9 @@
   - [Data Instances](#data-instances)
   - [Data Fields](#data-fields)
   - [Data Splits](#data-splits)
+- [Considerations for Using the Data](#considerations-for-using-the-data)
+  - [Social Impact of Dataset](#social-impact-of-dataset)
+  - []
 - [Additional Information](#additional-information)
   - [Dataset Curators](#dataset-curators)
   - [Licensing Information](#licensing-information)
@@ -17,8 +19,10 @@
   - [Contributions](#contributions)
 
 ### Dataset Description
+The dataset that we have used has been extracted from [Hugging Face - Food 101](https://huggingface.co/datasets/food101).
+
 #### Dataset Summary
-The dataset that we have used has been extracted from [Hugging Face - Food 101](https://huggingface.co/datasets/food101). The remarkable fact about this dataset is that it has a large and significant weight in terms of data volume, as it contains 101 classes (101,000 images in total). Thus, we have undertaken a reduction process to simplify the problem, but maintaining the same structure and final goal. 
+This dataset contains 101,000 food images in total, each one belonging to one of 101 possible classes. That is a large and significant weight in terms of data volume. Thus, we have undertaken a reduction process to simplify the problem, but maintaining the same structure and final goal. 
 
 The reduced dataset consists of 30 food categories and 30.000 images in total (1.000 images of each class). For each class, 250 manually reviewed test images are provided as well as 750 training images. On purpose, the training images were not cleaned, and thus still contain some amount of noise. This comes mostly in the form of intense colors and sometimes wrong labels. All images were rescaled to have a maximum side length of 512 pixels.
 
@@ -49,6 +53,25 @@ The data instances have the following fields:
 |                         | Train split | Test split |
 |-------------------------|------------:|------------|
 | Number of examples      |   22,500    |   7,500    |
+
+
+### Considerations for Using the Data
+
+#### Social Impact of Dataset
+The implications of this project are far-reaching, such as knowing meaningful information about dishes or aiding in dietary assessment. 
+
+#### Discussion of Biases
+The dataset must contain a similar number of samples for each category of food image in order to handle the bias. In this case, the balance is achieved.
+
+
+#### Other Known Limitations
+Some limitations that this dataset has are the following:
+
+- Images may contain distracting background elements or objects that are not relevant to the food item, which can make classification more challenging.
+
+- Food portion sizes can vary significantly, and the dataset may not capture this variability well. For example, if the model has been trained with images of "cakes", it maight struggle to identify a cake when the input image is a pice of it.
+
+- The appearance of a dish can vary based on how it's plated and presented. 
 
 
 ### Addtional Information
