@@ -1,11 +1,29 @@
 ## Dataset Card
 
-### Dataset Summary
-The dataset that we have used has been extracted from ["Hugging Face - Food 101"](https://huggingface.co/datasets/food101). The remarkable fact about this dataset is that it has a large and significant weight in terms of data volume, as it contains 101 classes (101,000 images in total). Thus, we have undertaken a reduction process to simplify the problem, but maintaining the same structure and final goal. 
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Dataset Description](#dataset-description)
+  - [Dataset Summary](#dataset-summary)
+  - [Supported Tasks and Leaderboards](#supported-tasks-and-leaderboards)
+  - [Languages](#languages)
+- [Dataset Structure](#dataset-structure)
+  - [Data Instances](#data-instances)
+  - [Data Fields](#data-fields)
+  - [Data Splits](#data-splits)
+- [Additional Information](#additional-information)
+  - [Dataset Curators](#dataset-curators)
+  - [Licensing Information](#licensing-information)
+  - [Citation Information](#citation-information)
+  - [Contributions](#contributions)
+
+### Dataset Description
+#### Dataset Summary
+The dataset that we have used has been extracted from [Hugging Face - Food 101](https://huggingface.co/datasets/food101). The remarkable fact about this dataset is that it has a large and significant weight in terms of data volume, as it contains 101 classes (101,000 images in total). Thus, we have undertaken a reduction process to simplify the problem, but maintaining the same structure and final goal. 
 
 The reduced dataset consists of 30 food categories and 30.000 images in total (1.000 images of each class). For each class, 250 manually reviewed test images are provided as well as 750 training images. On purpose, the training images were not cleaned, and thus still contain some amount of noise. This comes mostly in the form of intense colors and sometimes wrong labels. All images were rescaled to have a maximum side length of 512 pixels.
 
-Language: English.
+#### Languages
+The laanguage used in the dataset is English.
 
 
 ### Dataset Structure
@@ -28,19 +46,17 @@ The data instances have the following fields:
 
 
 #### Data Splits
-Train split: 
-
-- Number of examples: 22.500.
-
-Test split:
-
-- Number of examples: 7.500.
+|                         | Train split | Test split |
+|-------------------------|------------:|------------|
+| Number of examples      |   22,500    |   7,500    |
 
 
 ### Addtional Information
 
-#### LICENSE AGREEMENT
+#### Data curators 
+The people involved in the data discorery, data organization, data quality and validation are [Alexandra González](https://github.com/alexandraglz), [Wenli Pan](https://github.com/wenlipan7) and [Violeta Sànchez](https://github.com/violeta51).
 
+#### Licensing Information
 The Food-101 data set consists of images from [Foodspotting](http://www.foodspotting.com/) which are not property of the Federal Institute of Technology Zurich (ETHZ). Any use beyond scientific fair use must be negociated with the respective picture owners according to the [Foodspotting terms of use](http://www.foodspotting.com/terms/).
 
 
@@ -55,5 +71,4 @@ The Food-101 data set consists of images from [Foodspotting](http://www.foodspot
 ```
 
 #### Contributions
-
 Thanks to @nateraw for adding this dataset.
