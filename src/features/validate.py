@@ -1,20 +1,23 @@
 import great_expectations as gx
+import numpy as np
 
-context = gx.get_context()
+# context.add_or_update_expectation_suite("iowa_training_suite") -> demo
+context = gx.data_context.DataContext("/Users/alexandragonzalezalvarez/Desktop/taed2-Food_Classification/notebooks/processing.ipynb") 
 
+datasource = context.sources.add_or_update_pandas(name="iowa_dataset")
 
 from great_expectations.dataset import PandasDataset
 from great_expectations.expectations import (
     ColumnExpectation,
-    expect_column_to_exist,
-    expect_column_to_have_unique_values
+    expect_column_to_exist, # id + label
+    expect_column_to_have_unique_values # als ids de les fotos
 )
 
-# Carga tu dataset (por ejemplo, un DataFrame de pandas)
-# Si estás trabajando con imágenes, primero debes cargar los datos y extraer los tamaños y nombres.
+#Read the processed data from processing.ipynb (train_data that is a tensor)
+train_data = np.load('/Users/alexandragonzalezalvarez/Desktop/taed2-Food_Classification/notebooks/train_data.pt')
 
 # Define tu dataset
-dataset = PandasDataset(your_data)  # Reemplaza "your_data" con tus datos
+dataset = PandasDataset(train_data)  # Reemplaza "your_data" con tus datos
 
 # Define una expectativa para el tamaño de las imágenes
 expect_column_to_exist(
