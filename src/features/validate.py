@@ -13,7 +13,7 @@ context.add_or_update_expectation_suite("food_training_suite")
 # Add a Pandas datasource to our context
 datasource = context.sources.add_or_update_pandas(name="food_dataset")
 
-PROCESSED_DATA_DIR = "/Users/alexandragonzalezalvarez/Desktop/taed2-Food_Classification/notebooks/"
+PROCESSED_DATA_DIR = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed/"
 
 x_train = pd.read_csv(PROCESSED_DATA_DIR + "x_data_information.csv")
 y_train = pd.read_csv(PROCESSED_DATA_DIR + "y_data_information.csv")
