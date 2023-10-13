@@ -22,4 +22,5 @@ def predict_image(
     output = torch.softmax(output, dim=1)  #Compute the softmax to get probabilities
     probs, idxs = output.topk(topk)  # Get the top k predicitons
     #return [(labels[i.item()], p.item()*100) for p, i in zip(probs[0], idxs[0])]
+    
     return probs[0], idxs[0]
