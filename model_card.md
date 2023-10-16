@@ -1,7 +1,7 @@
 ## Model Card
 
 ## Table of Contents
-- [Model Details]
+- [Model Details](#model-details)
     - [Model Description]
     - [Model Sources]
 - [Uses]
