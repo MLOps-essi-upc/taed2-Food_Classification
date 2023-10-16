@@ -2,33 +2,28 @@
 
 ## Table of Contents
 - [Model Details](#model-details)
-    - [Model Description]
-    - [Model Sources]
-- [Uses]
-    - [Direct Use]
-    - [Out-of-Scope]
+    - [Model Description](#model-description)
+    - [Model Sources](#model-sources)
+- [Uses](#uses)
+    - [Direct Use](#direct-use)
+    - [Out-of-Scope](#out-of-scope)
 - [Bias, Risks, and Limitations]
-    - [Recommendations]
-- [How to Get Started with the Model]
-- [Training Details]
-    - [Training Data]
-    - [Training Procedure]
-        - [Preprocessing (optional)]
-        - [Training Hyperparameters]
+    - [Recommendations](#recommendations)
+- [How to Get Started with the Model](#how-to-get-started-with-the-model)
+- [Training Details](#training-details)
+    - [Training Data](#training-data)
+    - [Training Procedure](#training-procedure)
+        - [Preprocessing](#preprocessing)
+        - [Training Hyperparameters](#training-hyperparameters)
         - [Speeds, Sizes, Times]
-- [Evaluation]
+- [Evaluation](#evaluation)
     - [Testing Data, Factors & Metrics]
-        - [Testing Data]
-        - [Factors]
-        - [Metrics]
-    - [Results]
-        - [Summary]
-- [Environmental Impact]
-    - [Hardware Type]
-    - [Hours used]
-    - [Cloud Provider]
-    - [Compute Region]
-    - [Carbon Emitted]
+        - [Testing Data](#testing-data)
+        - [Factors](#factors)
+        - [Metrics](#metrics)
+    - [Results](#results)
+        - [Summary](#summary)
+- [Environmental Impact](#environmental-impact)
 
 ## Model Details
 
@@ -39,6 +34,8 @@
 - **Model type:** Convolutional Neural Network
 - **Language(s) (NLP):** More Information Needed
 - **License:** Apache License for TensorFlow, BSD license for PyTorch, etc
+
+Next, there is a comparison image between the architecture of ResNet34 and VGG16.
 
 ![637f2e19aecf4c113421b8fa_image](https://github.com/MLOps-essi-upc/taed2-Food_Classification/assets/117642488/7095ab81-a3ff-4976-9518-2902b7edc4c9)
 
@@ -61,15 +58,16 @@ The model is not ideal for handling tasks that require **non-image data**. For i
 - **Biases**: If the training data is biased towards a certain class, this may negatively influence the model's performance (especially for underrepresented groups)
 - **Risks**: As a deep learning model with a significant number of parameters, ResNet-34 can be prone to overfitting, especially when trained on limited or noisy data.
 - **Limitations**: It cannot handle well other types of data (text, recordings, ...). Non-Interpretable Features.
-### Recomendations
+### Recommendations
 It is advisable to maintain balanced training data and implement tracking during the model's training to analyze its progression.
 
 ## How to Get Started with the Model
-In our case, we decided to use ResNet 34 from pytorch. The model is loaded in a very simple way:
+In our case, we decided to use ResNet 34 from pytorch (from scratch). The model can be loaded in a very simple way:
 
-import torch.models
+`import torch.models`
 
-model = models.resnet50()
+`model = models.resnet50()`
+
 
 ## Training Details
 
@@ -78,12 +76,17 @@ The model was trained with a reduced version of **Food101** dataset. Initially, 
 
 We took **22,500 images** for the training.
 
-### Training Procedure (FALTA)
+### Training Procedure
+The training procedure for the ResNet34 model involved several key stages. A epoch-based approach was employed, where each epoch constitutes a complete iteration through the training dataset. During each epoch, the model adjusted its parameters using the Adam optimizer, which is known for its adaptivity and efficiency in optimizing deep learning models.
 
-<!-- This relates heavily to the Technical Specifications. Content here should link to that section when it is relevant to the training procedure. -->
+For each training step, the model predicted labels for the training samples and then compared these predictions with the actual labels. This discrepancy was measured using a loss function, in this case, cross-entropy loss. Subsequently, the Adam optimizer fine-tuned the model's weights to minimize this loss.
+
+In addition to the training set, a validation set was also utilized to assess the model's performance after each epoch. This provided valuable insights into how well the model was generalizing to previously unseen data.
+
+Throughout the epochs, metrics like accuracy, loss, and possibly other problem-specific metrics were monitored. Consideration was also given to regularization strategies, such as employing techniques like data augmentation to enhance the model's generalization capabilities.
 
 #### Preprocessing
-**Data augmentation** technique was applied, in particuar, we used rotation, contrast, etc.
+Data augmentation technique was applied, for instance, rotation, contrast, etc.
 
 ### Training Hyperparameters
 - Batch_size = 64
@@ -97,19 +100,20 @@ It took 3 hours and 26 minutes to train the entire model.
 ### Testing Data, Factors & Metrics
 #### Testing Data
 As we already mentioned, the reduced version of the dataset was split into training and testing sets. Therefore, **7,500 samples** are designated for testing.
-#### Factors (FALTA)
-
+#### Factors
+The trained model takes a tensor image as input.
 #### Metrics
 The metric employed to test the model is the **accuracy**, that is, the number of well-predicted images devided with the total number of images.
 
 ### Results
 The resulting model has 55% of accuracy.
 
-#### Summary (FALTA)
+#### Summary
+The model has obtained fairly good results (better than classifiying randomly). Our hypothesis is that since the same dish can have many different appearances, it is really difficult to recognize them, even for humans. By adding more data, or applying transfer learning, the model's invariance can be notably improved.
 
 # Environmental Impact
-- **Hardware Type:** GPU from Kaggle (GPU T4 x 2)
+- **Hardware Type:** GPU from Kaggle (NVIDIA T4 x 2)
 - **Hours used:** 3 hours and 26 minutes
-- **Cloud Provider:** Kaggle
+- **Cloud Provider:** -
 - **Compute Region:** Catalonia
 - **Carbon Emitted:** 0.16253kg of CO2
