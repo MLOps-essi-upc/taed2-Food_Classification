@@ -61,7 +61,8 @@ validator.expect_column_values_to_be_in_set("size_dim2", [224.0])
 validator.expect_column_values_to_be_in_set("size_dim3", [224.0])
 
 validator.expect_column_values_to_be_of_type("label_id", "int64")
-validator.expect_column_values_to_be_of_type("type_torch.float32", "true")
+
+validator.expect_column_values_to_be_in_set("type_torch.float32", [1])
 
 validator.expect_column_values_to_be_between("label_id", min_value=0)
 validator.expect_column_values_to_be_between("label_id", max_value=29)
