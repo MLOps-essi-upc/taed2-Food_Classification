@@ -1,37 +1,16 @@
 stages:
-  prepare:
-    cmd: python -m src.features.prepare
-    deps:
-    - data/raw/test.csv
-    - data/raw/train.csv
-    - src/features/prepare.py
-    params:
-    - prepare.random_state
-    - prepare.test_size
-    - prepare.train_size
+  download:
+    cmd: python3 download_data.py
     outs:
-    - data/processed/X_train.csv
-    - data/processed/X_valid.csv
-    - data/processed/y_train.csv
-    - data/processed/y_valid.csv
-  train:
-    cmd: python -m src.models.train
+      - data/raw/
+  preprocess:
+    cmd: python3 preprocess_data.py
     deps:
-    - data/processed/X_train.csv
-    - data/processed/y_train.csv
-    - src/models/train.py
-    params:
-    - train.algorithm
-    - train.random_state
+      - data/processed/
+      - tests/preprocess_data.py
     outs:
-    - models/iowa_model.pkl
-  evaluate:
-    cmd: python -m src.models.evaluate
+      - data/processed/
+  upload:
+    cmd: python3 upload_data.py
     deps:
-    - data/processed/X_valid.csv
-    - data/processed/y_valid.csv
-    - models/iowa_model.pkl
-    - src/models/evaluate.py
-    metrics:
-    - metrics/scores.json:
-        cache: false
+      - data/processed/
