@@ -1,17 +1,22 @@
+import os
 import torch
 import pytest
 from PIL import Image
-from prediction.prediction import predict_image
 import torchvision.models as models
+from src.models.predict_model import predict_image
+
+# set the working directory
+os.chdir(r"C:\Users\wenli\OneDrive\Escritorio\taed2-Food_Classification")
+
 
 # load the trained model obtained from kaggle
 resnet34 = models.resnet34()
-resnet34.load_state_dict(torch.load("prediction/pytest/RESNET34", map_location=torch.device('cpu')))
+resnet34.load_state_dict(torch.load("models/RESNET34", map_location=torch.device('cpu')))
 
 # select multiples input samples to test the output
 @pytest.mark.parametrize(
     "image_path",
-    ['prediction/test_images/IMG_1.jpg', 'prediction/test_images/IMG_2.jpg'],
+    ['models/pytest/test_images/IMG_1.jpg', 'models/pytest/test_images/IMG_2.jpg'],
 )
 
 def test_prediction_output(image_path):
