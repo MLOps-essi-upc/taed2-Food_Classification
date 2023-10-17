@@ -88,7 +88,7 @@ Throughout the epochs, metrics like accuracy, loss, and possibly other problem-s
 #### Preprocessing
 Data augmentation technique was applied, for instance, rotation, contrast, etc.
 
-### Training Hyperparameters
+#### Training Hyperparameters
 - Batch_size = 64
 - Epochs = 20
 - Optimizer = Adam
