@@ -1,0 +1,15 @@
+stages:
+  - name: download
+    cmd: python3 download_data.py
+    outs:
+      - /data/raw/
+  - name: preprocess
+    cmd: python3 preprocess_data.py
+    deps:
+      - data/raw/
+    outs:
+      - data/processed/
+  - name: upload
+    cmd: python3 upload_data.py
+    deps:
+      - data/processed/
