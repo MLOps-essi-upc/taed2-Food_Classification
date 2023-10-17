@@ -19,5 +19,3 @@ def test_prediction_output(image_path):
     prob, target = predict_image(image, model=resnet34, topk=1)
     assert(target < 29 and target >= 0)
 
-
-
