@@ -1,7 +1,11 @@
 import os
 import shutil
-import Augmentor
+import torchvision.transforms as transforms
 import random
+
+from PIL import Image
+
+random.seed(42)
 
 # Directorios de entrada y salida
 input_data_dir = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw"
@@ -21,17 +25,29 @@ selected_folders = all_folders[:30]
 # Crear la estructura de directorios en data/processed
 os.makedirs(output_data_dir)
 
+transform_list = [
+    transforms.RandomResizedCrop(224),
+    transforms.RandomHorizontalFlip(p=0.2),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0),  # Transformación de contraste
+    transforms.RandomAffine(degrees=0, translate=(0.1, 0.1), scale=(0.95, 1.05)),  # Transformación de zoom
+]
+
+# Definir transformaciones
+train_transforms = transforms.Compose(transform_list)
+
 # Recorrer las carpetas seleccionadas y copiarlas a data/processed
 for folder in selected_folders:
     src_folder = os.path.join(input_data_dir, folder)
     dest_folder = os.path.join(output_data_dir, folder)
-    shutil.copytree(src_folder, dest_folder)
-
-# Aplicar aumentación de datos a las imágenes
-p = Augmentor.Pipeline(output_data_dir)
-p.rotate(probability=0.7, max_left_rotation=25, max_right_rotation=25)
-p.zoom_random(probability=0.5, percentage_area=0.8)
-p.random_contrast(probability=0.5, min_factor=0.7, max_factor=1.3)
-p.process()
+    
+    os.makedirs(dest_folder)  # Crear directorio de destino
+    
+    # Recorrer las imágenes en src_folder, aplicar transformaciones y guardarlas en dest_folder
+    for filename in os.listdir(src_folder):
+        img_path = os.path.join(src_folder, filename)
+        img = Image.open(img_path)  # Asegúrate de importar "PIL.Image"
+        img = train_transforms(img)  # Aplicar las transformaciones
+        processed_img_path = os.path.join(dest_folder, filename)
+        img.save(processed_img_path)  # Guardar la imagen procesada en dest_folder
 
 print("Data preprocessing has been completed.")

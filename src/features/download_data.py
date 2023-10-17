@@ -1,9 +1,9 @@
 import subprocess
 import os
 
-from src import ROOT_DIR, RAW_DATA_DIR
+#from src import ROOT_DIR, RAW_DATA_DIR
 
-download_path = RAW_DATA_DIR
+download_path = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw"
 
 if not os.path.exists(download_path):
     # Create a directory for .kaggle

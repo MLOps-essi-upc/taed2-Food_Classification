@@ -2,15 +2,16 @@ stages:
   download:
     cmd: python3 download_data.py
     outs:
-      - data/raw/
+      - ../data/raw
   preprocess:
     cmd: python3 preprocess_data.py
     deps:
-      - data/processed/
-      - tests/preprocess_data.py
+      - ../data/raw
+      - preprocess_data.py
     outs:
-      - data/processed/
+      - ../data/processed
   upload:
     cmd: python3 upload_data.py
     deps:
-      - data/processed/
+      - ../data/processed
+      - upload_data.py
