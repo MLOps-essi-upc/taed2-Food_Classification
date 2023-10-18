@@ -28,8 +28,8 @@ os.makedirs(output_data_dir)
 transform_list = [
     transforms.RandomResizedCrop(224),
     transforms.RandomHorizontalFlip(p=0.2),
-    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0),  # Transformación de contraste
-    transforms.RandomAffine(degrees=0, translate=(0.1, 0.1), scale=(0.95, 1.05)),  # Transformación de zoom
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0), 
+    transforms.RandomAffine(degrees=0, translate=(0.1, 0.1), scale=(0.95, 1.05)),  
 ]
 
 # Definir transformaciones
