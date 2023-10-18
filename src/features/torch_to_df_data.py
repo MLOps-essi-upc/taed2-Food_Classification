@@ -30,28 +30,6 @@ from PIL import Image
 from typing import Tuple, List
 from matplotlib.pyplot import imshow
 
-dagshub.init("taed2-Food_Classification", "violeta51", mlflow=True)
-
-mlflow.set_tracking_uri('https://dagshub.com/violeta51/taed2-Food_Classification.mlflow')
-mlflow.set_experiment(experiment_name="REPORT INICIAL")
-
-
-seed = 7767
-np.random.seed(seed)
-_ = torch.manual_seed(seed)
-_ = torch.cuda.manual_seed(seed)
-
-
-hparams = {
-    'log_interval': 200,
-    'epochs' : 20,
-    'batch_size' : 64,
-}
-
-mlflow.log_param("log_interval", hparams["log_interval"])
-mlflow.log_param("epochs", hparams["epochs"])
-mlflow.log_param("batch_size", hparams["batch_size"])
-
 
 class CustomImageDataset(Dataset):
     def __init__(self, annotations_file, img_dir, transform=None, target_transform=None):
@@ -135,24 +113,6 @@ train_size = int(train_percentage * total_length)
 val_size = total_length - train_size
 
 train_subset, val_subset = torch.utils.data.random_split(train_data, [train_size, val_size], generator=torch.Generator().manual_seed(7767))
-
-
-from torch.utils.data import DataLoader
-
-train_loader = torch.utils.data.DataLoader(
-    train_subset, 
-    batch_size=hparams["batch_size"], 
-    shuffle=True,
-    num_workers=1, 
-    pin_memory=True,
-)
-
-val_loader = torch.utils.data.DataLoader(
-    val_subset,
-    batch_size=hparams["batch_size"],
-    shuffle=False, 
-    num_workers=1,
-)
 
 
 # Initialize an empty DataFrame.
