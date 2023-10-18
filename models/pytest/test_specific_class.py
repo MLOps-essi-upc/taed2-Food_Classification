@@ -14,10 +14,14 @@ os.chdir(r"C:\Users\wenli\OneDrive\Escritorio\taed2-Food_Classification")
 resnet34 = models.resnet34()
 resnet34.load_state_dict(torch.load("models/RESNET34", map_location=torch.device('cpu')))
 
+target_class = 1
+
 # select multiples input samples to test the output
 @pytest.mark.parametrize(
     "image_path, food_id",
-    [('models/pytest/test_images/IMG_1.jpg', 26), ('models/pytest/test_images/IMG_2.jpg', 20)],
+    [('data/test/beef_carpaccio/bc1.jpg', target_class), ('data/test/beef_carpaccio/bc2.jpg', target_class), 
+    ('data/test/beef_carpaccio/bc3.jpg', target_class), ('data/test/beef_carpaccio/bc4.jpg', target_class), 
+    ('data/test/beef_carpaccio/bc5.jpg', target_class)],
 )
 
 def test_model_bias(image_path, food_id):
