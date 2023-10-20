@@ -92,28 +92,29 @@ Data augmentation technique was applied, for instance, rotation, contrast, etc.
 - Batch_size = 64
 - Epochs = 20
 - Optimizer = Adam
+- Learning Rate = 0.001
 - Loss = CrossEntropyLoss
 #### Times
-It took 3 hours and 26 minutes to train the entire model.
+It took 2 hours and 56 minutes to train the entire model.
 
 ## Evaluation
 ### Testing Data, Factors & Metrics
 #### Testing Data
-As we already mentioned, the reduced version of the dataset was split into training and testing sets. Therefore, **7,500 samples** are designated for testing.
+We set aside a small portion of data in order to test the model with previously unseen images.
 #### Factors
 The trained model takes a tensor image as input.
 #### Metrics
 The metric employed to test the model is the **accuracy**, that is, the number of well-predicted images devided with the total number of images.
 
 ### Results
-The resulting model has 55% of accuracy.
+The resulting model has 59% of accuracy in training and and 55% in testing.
 
 #### Summary
 The model has obtained fairly good results (better than classifiying randomly). Our hypothesis is that since the same dish can have many different appearances, it is really difficult to recognize them, even for humans. By adding more data, or applying transfer learning, the model's invariance can be notably improved.
 
 # Environmental Impact
 - **Hardware Type:** GPU from Kaggle (NVIDIA T4 x 2)
-- **Hours used:** 3 hours and 26 minutes
+- **Hours used:** 2 hours and 56 minutes
 - **Cloud Provider:** -
 - **Compute Region:** Catalonia
-- **Carbon Emitted:** 0.16253kg of CO2
+- **Carbon Emitted:** 0.092769kg of CO2
