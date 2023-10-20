@@ -35,9 +35,10 @@
 - **Language(s) (NLP):** More Information Needed
 - **License:** Apache License for TensorFlow, BSD license for PyTorch, etc
 
-Next, there is a comparison image between the architecture of ResNet34 and VGG16.
+Next, there is a architecture image of ResNet34.
 
-![637f2e19aecf4c113421b8fa_image](https://github.com/MLOps-essi-upc/taed2-Food_Classification/assets/117642488/7095ab81-a3ff-4976-9518-2902b7edc4c9)
+![38371XTo6Q](https://github.com/MLOps-essi-upc/taed2-Food_Classification/assets/117642488/28c8d75f-be6a-411c-969d-da4d2fc9cf08)
+
 
 ### Model Sources
 - **Pytorch:** [https://blog.roboflow.com/custom-resnet34-classification-model/](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet34.html)
