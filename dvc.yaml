@@ -10,8 +10,13 @@ stages:
       - preprocess_data.py
     outs:
       - ../data/processed
-  upload:
-    cmd: python3 upload_data.py
+  prepare:
+    cmd: python3 torch_to_df_data.py
     deps:
       - ../data/processed
-      - upload_data.py
+      - torch_to_df_data.py
+  evaluation:
+    cmd: python3 evaluate.py
+    deps:
+      - predict_model.py
+      - evaluate.py
