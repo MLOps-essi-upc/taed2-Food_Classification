@@ -1,0 +1,560 @@
+{
+  "evaluation_parameters": {},
+  "meta": {
+    "active_batch_definition": {
+      "batch_identifiers": {},
+      "data_asset_name": "training",
+      "data_connector_name": "fluent",
+      "datasource_name": "food_dataset"
+    },
+    "batch_markers": {
+      "ge_load_time": "20231017T090847.892670Z",
+      "pandas_data_fingerprint": "1aab0383fb2480ef54223a37ddd92c46"
+    },
+    "batch_spec": {
+      "batch_data": "PandasDataFrame"
+    },
+    "checkpoint_id": null,
+    "checkpoint_name": "my_checkpoint",
+    "expectation_suite_name": "food_training_suite",
+    "great_expectations_version": "0.17.22",
+    "run_id": {
+      "run_name": null,
+      "run_time": "2023-10-17T11:08:47.882823+02:00"
+    },
+    "validation_id": null,
+    "validation_time": "20231017T090847.913776Z"
+  },
+  "results": [
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_table_columns_to_match_ordered_list",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column_list": [
+            "size_dim1",
+            "size_dim2",
+            "size_dim3",
+            "min_colour_range",
+            "max_colour_range",
+            "type",
+            "label_type",
+            "label_id"
+          ]
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "observed_value": [
+          "size_dim1",
+          "size_dim2",
+          "size_dim3",
+          "min_colour_range",
+          "max_colour_range",
+          "type",
+          "label_type",
+          "label_id"
+        ]
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "size_dim1"
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_in_set",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "size_dim1",
+          "value_set": [
+            3.0
+          ]
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "unexpected_percent_total": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "size_dim2"
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_in_set",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "size_dim2",
+          "value_set": [
+            224.0
+          ]
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "unexpected_percent_total": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "size_dim3"
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_in_set",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "size_dim3",
+          "value_set": [
+            224.0
+          ]
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "unexpected_percent_total": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "min_colour_range"
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_between",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "min_colour_range",
+          "min_value": 0
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "unexpected_percent_total": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "max_colour_range"
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_between",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "max_colour_range",
+          "max_value": 1
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0,
+        "unexpected_percent_nonmissing": 0.0,
+        "unexpected_percent_total": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "type"
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "label_type"
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_of_type",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "label_type",
+          "type_": "int64"
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [
+          {
+            "count": 20,
+            "value": "int64"
+          }
+        ],
+        "partial_unexpected_index_list": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "partial_unexpected_list": [
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64",
+          "int64"
+        ],
+        "unexpected_count": 83216,
+        "unexpected_percent": 100.0,
+        "unexpected_percent_nonmissing": 100.0,
+        "unexpected_percent_total": 100.0
+      },
+      "success": false
+    },
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_be_between",
+        "kwargs": {
+          "batch_id": "food_dataset-training",
+          "column": "label_id",
+          "max_value": 29
+        },
+        "meta": {}
+      },
+      "meta": {},
+      "result": {
+        "element_count": 83216,
+        "missing_count": 0,
+        "missing_percent": 0.0,
+        "partial_unexpected_counts": [
+          {
+            "count": 20,
+            "value": 30
+          }
+        ],
+        "partial_unexpected_index_list": [
+          27354,
+          27355,
+          27356,
+          27357,
+          27358,
+          27359,
+          27360,
+          27361,
+          27362,
+          27363,
+          27364,
+          27365,
+          27366,
+          27367,
+          27368,
+          27369,
+          27370,
+          27371,
+          27372,
+          27373
+        ],
+        "partial_unexpected_list": [
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30,
+          30
+        ],
+        "unexpected_count": 55862,
+        "unexpected_percent": 67.12891751586233,
+        "unexpected_percent_nonmissing": 67.12891751586233,
+        "unexpected_percent_total": 67.12891751586233
+      },
+      "success": false
+    }
+  ],
+  "statistics": {
+    "evaluated_expectations": 15,
+    "success_percent": 86.66666666666667,
+    "successful_expectations": 13,
+    "unsuccessful_expectations": 2
+  },
+  "success": false
+}

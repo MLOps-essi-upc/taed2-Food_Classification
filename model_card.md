@@ -1,75 +1,119 @@
 ## Model Card
 
-### ResNet-50
-We are going to use a ResNet architecture to handle image classification tasks. To be more specific, we opted to apply a ResNet-50, which comes from Residual Network. It is a convolutional neural network that can be really useful for power computer vision tasks. This type of CNN was proposed in the 2015 paper “Deep Residual Learning for Image Recognition” by Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+## Table of Contents
+- [Model Details](#model-details)
+    - [Model Description](#model-description)
+    - [Model Sources](#model-sources)
+- [Uses](#uses)
+    - [Direct Use](#direct-use)
+    - [Out-of-Scope](#out-of-scope)
+- [Bias, Risks, and Limitations]
+    - [Recommendations](#recommendations)
+- [How to Get Started with the Model](#how-to-get-started-with-the-model)
+- [Training Details](#training-details)
+    - [Training Data](#training-data)
+    - [Training Procedure](#training-procedure)
+        - [Preprocessing](#preprocessing)
+        - [Training Hyperparameters](#training-hyperparameters)
+        - [Speeds, Sizes, Times]
+- [Evaluation](#evaluation)
+    - [Testing Data, Factors & Metrics]
+        - [Testing Data](#testing-data)
+        - [Factors](#factors)
+        - [Metrics](#metrics)
+    - [Results](#results)
+        - [Summary](#summary)
+- [Environmental Impact](#environmental-impact)
 
-ResNet was designed to address the limitations of VGG-styled CNNs. In their paper, the authors demonstrated that adding more layers of convolution does not necessarily lead to an increase in validation accuracy; in fact, in most cases, the metrics decrease. In other words, once a certain limit is reached, the model stops improving. This is why they introduced "skip connections" as a solution proposal.
+## Model Details
 
+### Model Description
+**Residual Network** (a.k.a ResNet) is a convolutional neural network that was proposed in the 2015 paper “Deep Residual Learning for Image Recognition” by Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. It was designed to address the limitations of VGG-styled CNNs. In the paper, the authors demonstrated that adding more layers of convolution does not necessarily lead to an increase in validation accuracy; in fact, in most cases, the metrics decrease. In other words, once a certain limit is reached, the model stops improving. As a result, RestNet is different from traditional neural networks in the sense that it takes residuals from each layer and uses them in the subsequent connected layers (similar to residual neural networks used for text prediction).
 
-#### Model Details
-In a summarized manner, ResNet-50 consists of 48 convolutional layers, one MaxPool layer, and one average pool layer. Residual Network takes part in the artificial neural network (ANN) that forms networks by stacking residual blocks.
+- **Developed by:** Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun
+- **Model type:** Convolutional Neural Network
+- **Language(s) (NLP):** More Information Needed
+- **License:** Apache License for TensorFlow, BSD license for PyTorch, etc
 
-Technical specifications:
-- Developed by: Microsoft Research (Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun)
-- Model type: Image classification / feature backbone (Convolutional Neural Network)
-- Language(s): -
-- License: Apache License for TensorFlow, BSD license for PyTorch, etc.
-- Parent Model: ResNet-50 is a variant of the original ResNet architecture
-- Papers:
-    - [ResNet strikes back: An improved training procedure in timm](https://arxiv.org/abs/2110.00476)
-    - [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
-    
+Next, there is a comparison image between the architecture of ResNet34 and VGG16.
 
-#### Model Usage
+![637f2e19aecf4c113421b8fa_image](https://github.com/MLOps-essi-upc/taed2-Food_Classification/assets/117642488/7095ab81-a3ff-4976-9518-2902b7edc4c9)
+
+### Model Sources
+- **Pytorch:** [https://blog.roboflow.com/custom-resnet34-classification-model/](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet34.html)
+- **Paper:** https://www.researchgate.net/publication/348227673_ResNet_34
+- **Demo:** https://blog.roboflow.com/custom-resnet34-classification-model/
+
+## Uses
+### Direct Use
 The model can be used for image classification, feature map extraction, image embeddings and among others.
-ResNet has achieved state-of-the-art results on various computer vision tasks, including image classification, object detection, and semantic segmentation. In the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) 2015, the ResNet-152 architecture achieved a top-5 error rate of 3.57%, significantly better than the previous state-of-the-art error rate of 3.57%
+### Out of Scope Use
+The model is not ideal for handling tasks that require **non-image data**. For instance:
+- Natural Language Processing (NLP)
+- Audio Signal Processing
+- Time Series Analysis
+- Graph Data Analysis
 
-TThe reasons why we opt for using this network for image classification are:
-- Deeper networks can be built with Resnet.
-- Performance metrics improvement
-- Faster training and better convergence to the optimal solution.
-- Transfer learning
+## Bias, Risks, and Limitations
+- **Biases**: If the training data is biased towards a certain class, this may negatively influence the model's performance (especially for underrepresented groups)
+- **Risks**: As a deep learning model with a significant number of parameters, ResNet-34 can be prone to overfitting, especially when trained on limited or noisy data.
+- **Limitations**: It cannot handle well other types of data (text, recordings, ...). Non-Interpretable Features.
+### Recommendations
+It is advisable to maintain balanced training data and implement tracking during the model's training to analyze its progression.
 
+## How to Get Started with the Model
+In our case, we decided to use ResNet 34 from pytorch (from scratch). The model can be loaded in a very simple way:
 
-#### Potential limitations
+`import torch.models`
 
-The model also presents limitations:
-- Complexity: The presence of hop connections makes ResNets more complex than traditional deep neural networks, which can lead to higher computational demands and memory requirements.
-- Susceptibility to overfitting.
-- Limited interpretability.
-- Implementation of Batch normalization layers since ResNet heavily depends on it. 
-
-
-#### Training Parameters
-- Params (M): 25.6
-- GMACs: 4.1
-- Activations (M): 11.1
+`model = models.resnet50()`
 
 
-#### Datasets
+## Training Details
 
-The dataset we pretend to feed the model is a reduced version of the original one ("Food101"). Initially, it consists of 101 categories, each with 1000 training samples (images). Nevertheless, due to the lack of resources, we decided to simplify the problem by reducing the number of classes, that is, we preserved only the first 30 categories and samples. In this way, we managed to obtain a derived dataset with only 30,000 images for training. Despite this incise, the model is perfectly scalable: if we feed the model with more categories, it will be able to learn from them and recognize more types of food.
+### Training Data
+The model was trained with a reduced version of **Food101** dataset. Initially, it consisted of 101 categories, each with 1000 training samples (images). Nevertheless, due to the lack of resources, we decided to simplify the problem by reducing the number of classes, that is, we preserved only the first 30 categories and samples. In this way, we managed to obtain a derived dataset with only 30,000 images for training.
 
-##### Training-Validation Data
-Since we have a uniquely reduced version of the dataset, we have decided to split it into Training and Validation Data, with sizes of 20,000 and 10,000 images respectively.
+We took **22,500 images** for the training.
 
+### Training Procedure
+The training procedure for the ResNet34 model involved several key stages. A epoch-based approach was employed, where each epoch constitutes a complete iteration through the training dataset. During each epoch, the model adjusted its parameters using the Adam optimizer, which is known for its adaptivity and efficiency in optimizing deep learning models.
 
-#### Evaluation Results
-Model settings:
-- Batch size: 64
-- Epochs: 20
-- Optimizer: Adam
-- Loss Function: Cross Entropy
-- Transfer Learning: No
+For each training step, the model predicted labels for the training samples and then compared these predictions with the actual labels. This discrepancy was measured using a loss function, in this case, cross-entropy loss. Subsequently, the Adam optimizer fine-tuned the model's weights to minimize this loss.
 
-Model metrics (of the last epoch):
-- Training Loss: 1.447
-- Evaluation Loss: 1.801
-- Training Accuracy: 57.94
-- Evaluation Accuracy: 47.39
+In addition to the training set, a validation set was also utilized to assess the model's performance after each epoch. This provided valuable insights into how well the model was generalizing to previously unseen data.
 
-Finally, in terms of the model's performance, it achieves a validation accuracy of 47% using images without applying any form of data augmentation. Consequently, implementing this approach is expected to enhance the robustness and accuracy of machine learning models, enabling them to perform effectively even with limited and inadequately representative data.
+Throughout the epochs, metrics like accuracy, loss, and possibly other problem-specific metrics were monitored. Consideration was also given to regularization strategies, such as employing techniques like data augmentation to enhance the model's generalization capabilities.
 
+#### Preprocessing
+Data augmentation technique was applied, for instance, rotation, contrast, etc.
 
+#### Training Hyperparameters
+- Batch_size = 64
+- Epochs = 20
+- Optimizer = Adam
+- Loss = CrossEntropyLoss
+#### Times
+It took 3 hours and 26 minutes to train the entire model.
 
+## Evaluation
+### Testing Data, Factors & Metrics
+#### Testing Data
+As we already mentioned, the reduced version of the dataset was split into training and testing sets. Therefore, **7,500 samples** are designated for testing.
+#### Factors
+The trained model takes a tensor image as input.
+#### Metrics
+The metric employed to test the model is the **accuracy**, that is, the number of well-predicted images devided with the total number of images.
 
+### Results
+The resulting model has 55% of accuracy.
+
+#### Summary
+The model has obtained fairly good results (better than classifiying randomly). Our hypothesis is that since the same dish can have many different appearances, it is really difficult to recognize them, even for humans. By adding more data, or applying transfer learning, the model's invariance can be notably improved.
+
+# Environmental Impact
+- **Hardware Type:** GPU from Kaggle (NVIDIA T4 x 2)
+- **Hours used:** 3 hours and 26 minutes
+- **Cloud Provider:** -
+- **Compute Region:** Catalonia
+- **Carbon Emitted:** 0.16253kg of CO2
