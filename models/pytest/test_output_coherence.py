@@ -3,7 +3,7 @@ import torch
 import pytest
 from PIL import Image
 import torchvision.models as models
-from src.models.predict_model import predict_image
+from models.pytest.predict_model import predict_image
 
 # set the working directory
 os.chdir(r"C:\Users\wenli\OneDrive\Escritorio\taed2-Food_Classification")
