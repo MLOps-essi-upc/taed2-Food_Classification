@@ -1,34 +1,21 @@
+"""
+Module Name: torch_to_df_data.py
+
+The torch_to_df_data.py module loads, preprocesses, and extracts information from a dataset of food images, saving relevant data to DataFrames for analysis.
+"""
+
 import os
-import ast
-import shutil
-import urllib
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-import mlflow
-import mlflow.pytorch
-import dagshub
-import great_expectations as gx
+import numpy as np
 import pandas as pd
 import torch
-import torch.nn as nn
-import torch.optim as optim
-import torch.nn.functional as F
-import torchvision.models as models
-import torchvision.datasets as s
 import torchvision.transforms as transforms
-import matplotlib
-import matplotlib.pyplot as plt
-
-from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader, ConcatDataset
 from torchvision.io import read_image
 from torchvision.transforms.functional import to_pil_image
 from great_expectations.dataset import PandasDataset
 from tqdm import tqdm
-from typing import Tuple, Dict, Any, List
 from PIL import Image
-from typing import Tuple, List
-from matplotlib.pyplot import imshow
+from typing import List
 
 
 class CustomImageDataset(Dataset):

@@ -1,3 +1,9 @@
+"""
+Module Name: preprocess_data.py
+
+The preprocess_data.py module performs data preprocessing for image classification by applying various data augmentation techniques to a selected subset of image folders, saving the processed images to a new directory.
+"""
+
 import os
 import shutil
 import torchvision.transforms as transforms

@@ -1,3 +1,9 @@
+"""
+Module Name: download_data.py
+
+The preprocess_data.py module automates the download and extraction of a dataset using the Kaggle API, facilitating data acquisition for a machine learning project.
+"""
+
 import subprocess
 import os
 
