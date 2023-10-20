@@ -1,22 +1,22 @@
 stages:
   download:
-    cmd: python3 download_data.py
+    cmd: /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/src/features/download_data.py
     outs:
-      - ../data/raw
+      - /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw
   preprocess:
-    cmd: python3 preprocess_data.py
+    cmd: /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/src/features/preprocess_data.py
     deps:
-      - ../data/raw
+      - /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw
       - preprocess_data.py
     outs:
-      - ../data/processed
+      - /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/src/features/preprocess_data.py
   prepare:
-    cmd: python3 torch_to_df_data.py
+    cmd: /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/src/features/torch_to_df_data.py
     deps:
-      - ../data/processed
-      - torch_to_df_data.py
+      - /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed
+      - /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/src/features/torch_to_df_data.py
   evaluation:
-    cmd: python3 evaluate.py
+    cmd: /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/src/models/evaluate.py
     deps:
-      - predict_model.py
-      - evaluate.py
+      - /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/src/models/predict_model.py
+      - /Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/src/models/evaluate.py
