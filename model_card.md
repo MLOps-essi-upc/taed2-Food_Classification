@@ -7,7 +7,7 @@
 - [Uses](#uses)
     - [Direct Use](#direct-use)
     - [Out-of-Scope](#out-of-scope)
-- [Bias, Risks, and Limitations]
+- [Bias, Risks, and Limitations](#bias-risks-and-limitations)
     - [Recommendations](#recommendations)
 - [How to Get Started with the Model](#how-to-get-started-with-the-model)
 - [Training Details](#training-details)
@@ -15,9 +15,9 @@
     - [Training Procedure](#training-procedure)
         - [Preprocessing](#preprocessing)
         - [Training Hyperparameters](#training-hyperparameters)
-        - [Speeds, Sizes, Times]
+        - [Speeds, Sizes, Times](#speeds-sizes-times)
 - [Evaluation](#evaluation)
-    - [Testing Data, Factors & Metrics]
+    - [Testing Data, Factors & Metrics](#testing-data-factors-&-metrics)
         - [Testing Data](#testing-data)
         - [Factors](#factors)
         - [Metrics](#metrics)
