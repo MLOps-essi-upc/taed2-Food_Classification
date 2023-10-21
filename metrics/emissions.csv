@@ -1,0 +1,6 @@
+timestamp,project_name,run_id,duration,emissions,emissions_rate,cpu_power,gpu_power,ram_power,cpu_energy,gpu_energy,ram_energy,energy_consumed,country_name,country_iso_code,region,cloud_provider,cloud_region,os,python_version,codecarbon_version,cpu_count,cpu_model,gpu_count,gpu_model,longitude,latitude,ram_total_size,tracking_mode,on_cloud,pue
+
+2023-10-20T14:25:54,codecarbon,6c9834ee-37d3-4c1b-9480-f41b89d40147,10311.292983293533,0.09276944359297558,8.996877864229211e-06,42.5,51.874758301290775,11.7577543258667,0.1217144953209494,0.16958476538992623,0.03363323984740601,0.3249325005582814,United States,USA,south carolina,,,Linux-6.1.42+-x86_64-with-glibc2.35,3.10.12,2.3.1,4,Intel(R) Xeon(R) CPU @ 2.00GHz,2,2 x Tesla T4,-79.9746,32.8608,31.35401153564453,machine,N,1.0
+
+2023-10-10T17:02:18,codecarbon,ee04c261-36c4-4019-824c-d78eacf991ed,12224.021739959717,0.16253112098975858,1.3296043188343855e-05,42.5,43.169583373550296,5.860472202301025,0.14427572312586828,0.19494668540166787,0.01986654610174118,0.35908895462927815,United States,USA,iowa,,,Linux-6.1.42+-x86_64-with-glibc2.35,3.10.12,2.3.1,2,Intel(R) Xeon(R) CPU @ 2.00GHz,2,2 x Tesla T4,-95.8517,41.2591,15.627925872802734,machine,N,1.0
+

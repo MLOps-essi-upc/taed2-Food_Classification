@@ -1,11 +1,8 @@
 from pathlib import Path
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
-ROOT_DIR = Path(Path(__file__).resolve().parent.parent)
-
-RAW_DATA_DIR = ROOT_DIR / "data/raw"
-PROCESSED_DATA_DIR = ROOT_DIR / "data/processed"
-MODELS_DIR = ROOT_DIR / "models"
-METRICS_DIR = ROOT_DIR / "metrics"
+path = os.path.dirname(os.path.abspath("__file__"))
+ROOT_DIR = Path(Path(path).resolve().parent.parent)
