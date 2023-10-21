@@ -11,14 +11,14 @@ stages:
     cmd: python3 src/models/evaluate.py
     deps:
     - path: models/RESNET34
-      md5: 1438be87d59cd7aff8fe745682cca032
+      md5: 7f7c4854af6b98d35c0ae32da7c4db62
       size: 87330537
     - path: src/models/evaluate.py
       md5: 4c53d0ed5d30f0b5a204f736b83a4479
       size: 2185
     - path: src/models/predict_model.py
-      md5: 885f2e24f4975b9dc13e6975062b60cb
-      size: 998
+      md5: 229e1fb4b7e9bc8a47979926d825a848
+      size: 831
   preprocess:
     cmd: python3 src/features/preprocess_data.py
     deps:
@@ -27,20 +27,20 @@ stages:
       size: 5116621947
       nfiles: 101000
     - path: src/features/preprocess_data.py
-      md5: e00e061b821f73f202d79ab403662324
-      size: 1381
+      md5: e6101f812f6f6e7e48814bb75fa4e125
+      size: 2193
     outs:
     - path: data/processed
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: b5d591f28b43d2149b08535253ca5c20.dir
+      size: 261225602
+      nfiles: 30000
   prepare:
     cmd: python3 src/features/torch_to_df_data.py
     deps:
     - path: data/processed
-      md5: d172ef9dc8968a57cde7b4bc03eee99c.dir
-      size: 262338996
+      md5: 38471de428699a4145c003bcfb20680c.dir
+      size: 262372701
       nfiles: 30002
     - path: src/features/torch_to_df_data.py
-      md5: 6c08959a99e5c517f332339bb8cec9bf
-      size: 5197
+      md5: 546256cb6be532ff8433b561b262e18c
+      size: 5160
