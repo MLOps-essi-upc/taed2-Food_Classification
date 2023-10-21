@@ -60,6 +60,7 @@ class CustomImageDataset(Dataset):
 train_transforms = transforms.Compose([transforms.ToTensor()])
 
 ## read the folders and load them in a specific class structure
+
 first = False
 first_first = True
 
@@ -68,15 +69,12 @@ dictionary = {}
 idx = 0
 
 for dirname, _, filenames in os.walk('/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed'):
-
     if first == True:
         label = dirname[len('/kaggle/input/data-food/external/'):]
         columns = ['file', 'label']
         target = pd.DataFrame(columns=columns)
-        
         for filename in filenames:
             target.loc[len(target)] = [filename, idx]
-        
         dictionary[idx] =  label
         sub_dataset = CustomImageDataset(target, dirname, transform = train_transforms)
         
@@ -85,10 +83,8 @@ for dirname, _, filenames in os.walk('/Users/violeta/Desktop/gced/Q7/TAED2/proje
             first_first = False
         else:
             train_data = ConcatDataset([train_data, sub_dataset])
-        
         idx = idx + 1
-        
-    first = True     
+    first = True    
 
 # split into training and validation set
 train_percentage = 0.7
