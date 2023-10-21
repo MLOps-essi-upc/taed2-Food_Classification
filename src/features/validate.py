@@ -1,5 +1,11 @@
+"""
+Module Name: validate.py
+
+The script validate.py configures data validation using
+the Great Expectations library for a food image dataset.
+"""
+
 import great_expectations as gx
-import numpy as np
 import pandas as pd
 
 # Get the data context
@@ -13,7 +19,9 @@ context.add_or_update_expectation_suite("food_training_suite")
 # Add a Pandas datasource to our context
 datasource = context.sources.add_or_update_pandas(name="food_dataset")
 
-PROCESSED_DATA_DIR = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed/"
+PROCESSED_DATA_DIR = (
+    "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed/"
+    )
 
 x_train = pd.read_csv(PROCESSED_DATA_DIR + "x_data_information.csv")
 y_train = pd.read_csv(PROCESSED_DATA_DIR + "y_data_information.csv")
@@ -71,10 +79,10 @@ validator.expect_column_values_to_be_between("label_id", max_value=29)
 validator.save_expectation_suite(discard_failed_expectations=False)
 
 # Create a checkpoint and run the validation
-checkpoint = context.add_or_update_checkpoint(
+CHECKPOINT = context.add_or_update_checkpoint(
     name="my_checkpoint",
     validator=validator,
 )
 
-checkpoint_result = checkpoint.run()
+checkpoint_result = CHECKPOINT.run()
 context.view_validation_result(checkpoint_result)
