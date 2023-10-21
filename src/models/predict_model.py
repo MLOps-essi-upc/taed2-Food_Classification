@@ -1,14 +1,7 @@
-"""
-Module Name: predict_model.py
-
-The predict_model.py module contains a function, predict_image, for making image classification predictions using a RESNET34.
-"""
-
-
 import torch
+from typing import Tuple, List
 import torchvision.transforms as transforms
 from torchvision.transforms.functional import to_pil_image
-from typing import Tuple, List
 
 def predict_image(
         image: torch.tensor, 

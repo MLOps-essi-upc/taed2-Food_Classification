@@ -40,20 +40,3 @@ transform_list = [
 
 # Definir transformaciones
 train_transforms = transforms.Compose(transform_list)
-
-# Recorrer las carpetas seleccionadas y copiarlas a data/processed
-for folder in selected_folders:
-    src_folder = os.path.join(input_data_dir, folder)
-    dest_folder = os.path.join(output_data_dir, folder)
-    
-    os.makedirs(dest_folder)  # Crear directorio de destino
-    
-    # Recorrer las imágenes en src_folder, aplicar transformaciones y guardarlas en dest_folder
-    for filename in os.listdir(src_folder):
-        img_path = os.path.join(src_folder, filename)
-        img = Image.open(img_path)  # Asegúrate de importar "PIL.Image"
-        img = train_transforms(img)  # Aplicar las transformaciones
-        processed_img_path = os.path.join(dest_folder, filename)
-        img.save(processed_img_path)  # Guardar la imagen procesada en dest_folder
-
-print("Data preprocessing has been completed.")
