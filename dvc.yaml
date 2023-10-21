@@ -1,0 +1,23 @@
+stages:
+  download:
+    cmd: python3 src/features/download_data.py
+    outs:
+      - data/raw
+  preprocess:
+    cmd: python3 src/features/preprocess_data.py
+    deps:
+      - data/raw
+      - src/features/preprocess_data.py
+    outs:
+      - data/processed
+  prepare:
+    cmd: python3 src/features/torch_to_df_data.py
+    deps:
+      - src/features/torch_to_df_data.py
+      - data/processed
+  evaluation:
+    cmd: python3 src/models/evaluate.py
+    deps:
+      - src/models/predict_model.py
+      - src/models/evaluate.py
+      - models/RESNET34

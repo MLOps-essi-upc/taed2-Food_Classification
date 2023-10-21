@@ -1,7 +1,17 @@
+"""
+Module Name: preprocess_data.py
+
+The preprocess_data.py module performs data preprocessing for image classification by applying various data augmentation techniques to a selected subset of image folders, saving the processed images to a new directory.
+"""
+
 import os
 import shutil
-import Augmentor
+import torchvision.transforms as transforms
 import random
+
+from PIL import Image
+
+random.seed(42)
 
 # Directorios de entrada y salida
 input_data_dir = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw"
@@ -21,17 +31,12 @@ selected_folders = all_folders[:30]
 # Crear la estructura de directorios en data/processed
 os.makedirs(output_data_dir)
 
-# Recorrer las carpetas seleccionadas y copiarlas a data/processed
-for folder in selected_folders:
-    src_folder = os.path.join(input_data_dir, folder)
-    dest_folder = os.path.join(output_data_dir, folder)
-    shutil.copytree(src_folder, dest_folder)
+transform_list = [
+    transforms.RandomResizedCrop(224),
+    transforms.RandomHorizontalFlip(p=0.2),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0), 
+    transforms.RandomAffine(degrees=0, translate=(0.1, 0.1), scale=(0.95, 1.05)),  
+]
 
-# Aplicar aumentación de datos a las imágenes
-p = Augmentor.Pipeline(output_data_dir)
-p.rotate(probability=0.7, max_left_rotation=25, max_right_rotation=25)
-p.zoom_random(probability=0.5, percentage_area=0.8)
-p.random_contrast(probability=0.5, min_factor=0.7, max_factor=1.3)
-p.process()
-
-print("Data preprocessing has been completed.")
+# Definir transformaciones
+train_transforms = transforms.Compose(transform_list)
