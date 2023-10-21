@@ -1,7 +1,9 @@
 """
 Module Name: evaluate.py
 
-The evaluate.py module is used to test a pre-trained image classification model on a set of test images, calculate accuracy, and compare the predicted labels with the ground truth labels.
+The evaluate.py module is used to test a pre-trained image
+classification model on a set of test images, calculate accuracy,
+and compare the predicted labels with the ground truth labels.
 """
 
 import os
@@ -24,20 +26,24 @@ resnet34.load_state_dict(torch.load("models/RESNET34", map_location=torch.device
 resnet34.eval()
 
 # Directorio de prueba
-test_data_dir = '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/test/food_test_1'
+TEST_DATA_DIR = (
+    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/test/food_test_1'
+    )
 
-clases_df = pd.read_csv("/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/models/Output-Food-Dictionary.csv")
+clases_df = pd.read_csv(
+    "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/models/Output-Food-Dictionary.csv"
+    )
 
 # Inicializar la cantidad total de imágenes y el contador de predicciones correctas
-total_images = 0
-correct_predictions = 0
+TOTAL_IMAGES = 0
+CORRECT_PREDICTIONS = 0
 
 # Recorre las imágenes en el directorio de prueba y realiza predicciones
-for filename in os.listdir(test_data_dir):
-    image_path = os.path.join(test_data_dir, filename)
+for filename in os.listdir(TEST_DATA_DIR):
+    image_path = os.path.join(TEST_DATA_DIR, filename)
     image = Image.open(image_path).convert('RGB')
     prob, target = predict_image(image, model=resnet34, topk=1)
-        
+
     # Supongamos que el formato del nombre del archivo es "1.jpg"
     filename_without_extension, file_extension = os.path.splitext(filename)
     try:
@@ -46,13 +52,13 @@ for filename in os.listdir(test_data_dir):
         # Manejar el caso en el que el formato del nombre de archivo no es un número válido
         print(f'Error: El nombre del archivo "{filename}" no es un número válido')
         continue  # Saltar esta imagen
-        
+
     # Compara la etiqueta predicha con la etiqueta real
     if target == true_label:
-        correct_predictions += 1
-        
-    total_images += 1
+        CORRECT_PREDICTIONS += 1
+
+    TOTAL_IMAGES += 1
 
 # Calcula la precisión
-accuracy = correct_predictions / total_images
+accuracy = CORRECT_PREDICTIONS / TOTAL_IMAGES
 print(f'Accuracy: {accuracy}')
