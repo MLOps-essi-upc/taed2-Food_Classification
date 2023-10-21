@@ -1,4 +1,8 @@
-"""This module tests the output of the model for a given input image."""
+"""
+Module Name: test_output_coherence.py
+
+This module tests the output of the model for a given input image.
+"""
 
 import os
 

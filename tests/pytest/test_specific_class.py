@@ -1,4 +1,8 @@
-"""This module tests the output of the model for a given input image."""
+"""
+Module Name: test_specific_class.py
+
+This module tests the output of the model for a given input image.
+"""
 
 import os
 import torch
