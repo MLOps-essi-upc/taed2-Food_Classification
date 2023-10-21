@@ -7,17 +7,21 @@ The "download_data.py" module automates the download, extraction, and organizati
 import subprocess
 import os
 import shutil
+import platform
 
 download_path = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw"
 
 # Ruta completa de la carpeta de datos descomprimidos
-unzip_path = f"{download_path}/food-101"
 zip_file_path = os.path.join(download_path, "food-101.zip")
 
-# Verificar si la carpeta de datos descomprimidos ya existe
-if os.path.exists(unzip_path):
-    # Si existe, eliminarla
-    subprocess.run(f"rm -r {unzip_path}", shell=True)
+# Verificar si hay directorios con datos en la ruta de descarga
+if os.path.exists(download_path):
+    subdirectories = [d for d in os.listdir(download_path) if os.path.isdir(os.path.join(download_path, d))]
+    if subdirectories:
+        # Si existen subdirectorios, eliminarlos
+        for subdirectory in subdirectories:
+            subprocess.run(f"rm -r {os.path.join(download_path, subdirectory)}", shell=True)
+
 
 # Crear un directorio para .kaggle
 subprocess.run("mkdir -p ~/.kaggle", shell=True)
@@ -31,16 +35,25 @@ subprocess.run(f"kaggle datasets download {dataset_name} -p {download_path}", sh
 # Extraer el archivo zip descargado
 subprocess.run(f"unzip -q {zip_file_path} -d {download_path}", shell=True)
 
-source_directory = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw/food-101/__MACOSX/food-101/images"
+source_directory = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw/food-101/food-101/images"
 destination_directory = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw"
 
-# Obtener la lista de subdirectorios en source_directory
-subdirectories = [d for d in os.listdir(source_directory) if os.path.isdir(os.path.join(source_directory, d))]
+# Comprobar el sistema operativo
+if platform.system() == "Darwin":
+    source_directory = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw/food-101/food-101/images"
+    destination_directory = "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw"
 
-# Mover cada subdirectorio al directorio de destino
-for subdirectory in subdirectories:
-    source_subdir = os.path.join(source_directory, subdirectory)
-    destination_subdir = os.path.join(destination_directory, subdirectory)
-    shutil.move(source_subdir, destination_subdir)
+    # Obtener la lista de subdirectorios en source_directory
+    subdirectories = [d for d in os.listdir(source_directory) if os.path.isdir(os.path.join(source_directory, d))]
 
+    # Mover cada subdirectorio al directorio de destino
+    for subdirectory in subdirectories:
+        source_subdir = os.path.join(source_directory, subdirectory)
+        destination_subdir = os.path.join(destination_directory, subdirectory)
+        shutil.move(source_subdir, destination_subdir)
+
+if os.path.exists("/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw/food-101"):
+    # Eliminar el directorio y su contenido de manera recursiva
+    shutil.rmtree("/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw/food-101")
+    
 os.remove(zip_file_path)
