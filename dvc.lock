@@ -27,13 +27,13 @@ stages:
       size: 5116621947
       nfiles: 101000
     - path: src/features/preprocess_data.py
-      md5: 603ec7924689adbac35a6fd73bf92c20
-      size: 2194
+      md5: e00e061b821f73f202d79ab403662324
+      size: 1381
     outs:
     - path: data/processed
-      md5: f0d0c5864adbd7db118cf27fd471b4c0.dir
-      size: 261194929
-      nfiles: 30000
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
   prepare:
     cmd: python3 src/features/torch_to_df_data.py
     deps:
