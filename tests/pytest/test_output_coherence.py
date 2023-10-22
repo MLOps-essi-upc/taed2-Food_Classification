@@ -9,12 +9,10 @@ import os
 from PIL import Image
 from torchvision import models
 from src import ROOT_DIR
-from tests.pytest.predict_model import predict_image
+from src.models.predict_model import predict_image
 
 import torch
 import pytest
-
-os.chdir(ROOT_DIR)
 
 # Load the trained model obtained from kaggle
 resnet34 = models.resnet34()

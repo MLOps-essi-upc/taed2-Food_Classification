@@ -9,11 +9,8 @@ import torch
 from PIL import Image
 from torchvision import models
 from src import ROOT_DIR
-from tests.pytest.predict_model import predict_image
+from src.models.predict_model import predict_image
 import pytest
-
-# set the working directory
-os.chdir(ROOT_DIR)
 
 
 # load the trained model obtained from kaggle
