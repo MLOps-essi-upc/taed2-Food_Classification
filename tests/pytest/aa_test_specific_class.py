@@ -33,4 +33,4 @@ def test_model_bias(image_path, food_id):
     """Tests the output of the model for a given input image."""
     image = Image.open(image_path)
     _, target = predict_image(image, model=resnet34, topk=1)
-    assert target == food_id
+    assert target[0].item() == food_id
