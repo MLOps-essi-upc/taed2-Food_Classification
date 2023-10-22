@@ -1,25 +1,13 @@
 from enum import Enum
 from pydantic import BaseModel
+from fastapi import FastAPI, UploadFile
 
 
-class PredictPayload(BaseModel):
-    sepal_length: float
-    sepal_width: float
-    petal_length: float
-    petal_width: float
+class ImageUploadPayload(BaseModel):
+    file: UploadFile
+    model_conf: dict = {}  # You can specify a default value or leave it as an empty dictionary
 
-    model_config: dict = {
-        "json_schema_extra": {
-            "example": {
-                "sepal_length": 6.4,
-                "sepal_width": 2.8,
-                "petal_length": 5.6,
-                "petal_width": 2.1,
-            }
-        }
-    }
-
-
+    
 class FoodClass(str, Enum):
     beet_salad = 0
     bibimbap = 1
