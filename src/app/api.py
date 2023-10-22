@@ -1,24 +1,37 @@
 """Main script: it includes our API initialization and (3) endpoints."""
+# '/' is the root endpoint.
+# '/models' returns the list of available models and their metrics. (Optional: use 'type' to filter the models).
+# '/models/{type}' returns the prediction of the model specified in the path parameter.
 
 import pickle
+import numpy as np
+import os
+
+from PIL import Image
 from datetime import datetime
 from functools import wraps
 from http import HTTPStatus
 from typing import List
-
-from fastapi import FastAPI, HTTPException, Request
-
-from src import MODELS_DIR
-from src.app.schemas import IrisType, PredictPayload
-
-model_wrappers_list: List[dict] = []
+import torch
+import torchvision.models as models
+import torchvision.transforms as transforms
+from fastapi import FastAPI, HTTPException, Request, UploadFile, File
+from pathlib import Path
+from src.app.schemas import FoodClass, ImageUploadPayload
+from src.app.food_data import class_id_to_class_name, food_class_info
 
 # Define application
 app = FastAPI(
-    title="Yet another Iris example",
-    description="This API lets you make predictions on the Iris dataset using a couple of simple models.",
-    version="0.1",
+    title="Food Classification API",
+    description="This API lets you make predictions on the Food101 dataset using a ResNet-34 model.",
+    version="1.0",
 )
+
+
+# Create 2 extra functions: `construct_response()` and `_load_models()`.
+# `construct_response()` will be used as a wrapper to return the response in a JSON format.
+# `_load_models()` will be used to load all the models found in `models/` directory.
+
 
 
 def construct_response(f):
@@ -46,20 +59,35 @@ def construct_response(f):
     return wrap
 
 
+
 @app.on_event("startup")
 def _load_models():
-    """Loads all pickled models found in `MODELS_DIR` and adds them to `models_list`"""
+    # Loads all pickled models found in `MODELS_DIR` and adds them to `models_list`
 
-    model_paths = [
-        filename
-        for filename in MODELS_DIR.iterdir()
-        if filename.suffix == ".pkl" and filename.stem.startswith("iris")
-    ]
+    # model_paths = [
+    #    filename
+    #    for filename in MODELS_DIR.iterdir()
+    #    if filename.suffix == ".pkl" #and filename.stem.startswith("iris")
+    # ]
+    # model_paths = [model_dir]
 
-    for path in model_paths:
-        with open(path, "rb") as file:
-            model_wrapper = pickle.load(file)
-            model_wrappers_list.append(model_wrapper)
+    # for path in model_paths:
+    # with open(path, "rb") as file:
+    #     model_wrapper = pickle.load(file)
+    #     model_wrappers_list.append(model_wrapper)
+    
+    # Path to the models folder
+    path = os.path.dirname(os.path.abspath("__file__"))
+    ROOT_DIR = Path(Path(path).resolve())
+    MODELS_FOLDER_PATH = Path(ROOT_DIR, "models", "RESNET34")
+
+    resnet34_model = models.resnet34()
+    resnet34_model.load_state_dict(torch.load(MODELS_FOLDER_PATH, map_location=torch.device('cpu')))
+    ##with open(MODELS_FOLDER_PATH / "RESNET34", "rb") as pickled_model:
+        ##resnet34_model = pickle.load(pickled_model)
+
+    return resnet34_model
+
 
 
 @app.get("/", tags=["General"])  # path operation decorator
@@ -70,78 +98,93 @@ def _index(request: Request):
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
-        "data": {"message": "Welcome to IRIS classifier! Please, read the `/docs`!"},
+        "data": {"message": "Welcome to Food classifier! Please, read the `/docs`!"},
     }
+
     return response
 
 
-@app.get("/models", tags=["Prediction"])
-@construct_response
-def _get_models_list(request: Request, type: str = None):
-    """Return the list of available models"""
 
-    available_models = [
-        {
-            "type": model["type"],
-            "parameters": model["params"],
-            "accuracy": model["metrics"],
-        }
-        for model in model_wrappers_list
-        if model["type"] == type or type is None
-    ]
+#@app.post("/predict", tags=["Prediction"])
+#@construct_response
+def process_uploaded_image(payload: ImageUploadPayload):
+    # Access the uploaded image using payload.file
+    uploaded_image = payload.file
 
-    if not available_models:
-        raise HTTPException(
-            status_code=HTTPStatus.BAD_REQUEST, detail="Type not found")
+    # Perform any necessary preprocessing on the uploaded image
+    image = Image.open(uploaded_image)
+
+    # To-Do 1: Check dimensions.
+    # Resize the input image to (224, 224) dimensions.
+    # Retain only the first three channels (R, G, B) using [..., :3].
+    # Expands the dimensions by adding an extra dimension at the beginning (converts it to a 4D array).
+
+    preprocess = transforms.Compose([transforms.ToTensor()])
+    image = preprocess(image)
+
+    # To-Do 2: Check if normalization is needed (pixel values not in the range of 0 to 1).
+    if (torch.min(image) < 0 or torch.max(image) > 1):
+        # Normalize the image to the range 0 to 1.
+        image = image / 255.0
+
+    # To-Do 3: Convert the data type of the image to float32 if it's not already.
+    image = image.float()
+    """
+    response = {
+        "message": HTTPStatus.OK.phrase,
+        "status-code": HTTPStatus.OK,
+        "data": {"image": image},
+    }"""
+
+    return image
+
+
+
+def get_class_name(class_id):
+    """Convert a label ID to its corresponding name."""
+    if class_id[0].item() in class_id_to_class_name:
+        return class_id_to_class_name[class_id[0].item()]
     else:
-        return {
-            "message": HTTPStatus.OK.phrase,
-            "status-code": HTTPStatus.OK,
-            "data": available_models,
-        }
+        return "Unknown"
+
 
 
 @app.post("/models/{type}", tags=["Prediction"])
 @construct_response
-def _predict(request: Request, type: str, payload: PredictPayload):
-    """Classifies Iris flowers based on sepal and petal sizes."""
+def _predict(request: Request, file: UploadFile):  # Change payload to accept image file
+    """Classifies food images based on model type."""
 
-    # sklearn's `predict()` methods expect a 2D array of shape [n_samples, n_features]
-    # therefore, we need to convert our single data point into a 2D array
-    features = [
-        [
-            payload.sepal_length,
-            payload.sepal_width,
-            payload.petal_length,
-            payload.petal_width,
-        ]
-    ]
+    # Load the image and perform any necessary preprocessing
+    image = process_uploaded_image(file)
 
-    model_wrapper = next(
-        (m for m in model_wrappers_list if m["type"] == type), None)
+    # Compute predictions using the model
+    image = image.unsqueeze(0) # add batch dimension
 
-    if model_wrapper:
-        prediction = model_wrapper["model"].predict(features)
-        prediction = int(prediction[0])
-        predicted_type = IrisType(prediction).name
+    model = _load_models()
 
-        response = {
-            "message": HTTPStatus.OK.phrase,
-            "status-code": HTTPStatus.OK,
-            "data": {
-                "model-type": model_wrapper["type"],
-                "features": {
-                    "sepal_length": payload.sepal_length,
-                    "sepal_width": payload.sepal_width,
-                    "petal_length": payload.petal_length,
-                    "petal_width": payload.petal_width,
-                },
-                "prediction": prediction,
-                "predicted_type": predicted_type,
-            },
-        }
+    # predict raw outputs
+    output = model(image)
+
+    #Compute the softmax to get probabilities
+    output = torch.softmax(output, dim=1)  
+    probs, idxs = output.topk(1) 
+    prediction_name = get_class_name(idxs)
+
+    # Access extra information for the predicted food class
+    if prediction_name in food_class_info:
+        extra_info = food_class_info[prediction_name]
     else:
-        raise HTTPException(
-            status_code=HTTPStatus.BAD_REQUEST, detail="Model not found"
-        )
+        extra_info = {
+            "message": "No extra information available for this class."}
+
+    response = {
+        "message": HTTPStatus.OK.phrase,
+        "status-code": HTTPStatus.OK,
+        "data": {
+            "predicted_class_id": idxs[0].item(),
+            "predicted_class": prediction_name,
+            "extra_info": extra_info,
+        },
+    }
+
     return response
