@@ -1,8 +1,6 @@
 """"
-Check Python Version Compatibility.
-
-This script checks if the Python version matches the 
-required version and raises exceptions if there's a mismatch.
+This script checks Python Version Compatibility 
+and raises exceptions if there's a mismatch.
 """
 
 import sys

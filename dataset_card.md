@@ -22,6 +22,8 @@
 ### Dataset Description
 The dataset that we have used has been extracted from [Hugging Face - Food 101](https://huggingface.co/datasets/food101).
 
+We have employed 30 external images to assess the model's performance on different and unknown data. Additionally, incorporating external images can reduce the risk of bias in the model by exposing it to a broader range of images.
+
 #### Dataset Summary
 This dataset contains 101,000 food images in total, each one belonging to one of 101 possible classes. That is a large and significant weight in terms of data volume. Thus, we have undertaken a reduction process to simplify the problem, but maintaining the same structure and final goal. 
 
