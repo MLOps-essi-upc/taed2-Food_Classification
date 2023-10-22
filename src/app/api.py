@@ -149,7 +149,7 @@ def get_class_name(class_id):
 
 
 
-@app.post("/models/{type}", tags=["Prediction"])
+@app.post("/models", tags=["Prediction"])
 @construct_response
 def _predict(request: Request, file: UploadFile):  # Change payload to accept image file
     """Classifies food images based on model type."""
