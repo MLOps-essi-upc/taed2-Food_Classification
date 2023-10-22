@@ -15,9 +15,13 @@ stages:
     deps:
       - src/features/torch_to_df_data.py
       - data/processed
+    outs:
+      - data/features
   evaluation:
     cmd: python3 src/models/evaluate.py
     deps:
       - src/models/predict_model.py
       - src/models/evaluate.py
       - models/RESNET34
+      - data/test
+      

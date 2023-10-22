@@ -20,7 +20,7 @@ context.add_or_update_expectation_suite("food_training_suite")
 datasource = context.sources.add_or_update_pandas(name="food_dataset")
 
 PROCESSED_DATA_DIR = (
-    "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed/"
+    "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/features/"
     )
 
 x_train = pd.read_csv(PROCESSED_DATA_DIR + "x_data_information.csv")
@@ -30,7 +30,6 @@ train = pd.concat([x_train, y_train], axis=1)
 
 data_asset = datasource.add_dataframe_asset(name="training", dataframe=train)
 
-
 # Create a validator and configure the expectations
 batch_request = data_asset.build_batch_request()
 validator = context.get_validator(
@@ -39,7 +38,6 @@ validator = context.get_validator(
     datasource_name="food_dataset",
     data_asset_name="training",
 )
-
 
 validator.expect_table_columns_to_match_ordered_list(
     column_list=[

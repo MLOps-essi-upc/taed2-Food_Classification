@@ -52,6 +52,10 @@ class CustomImageDataset(Dataset):
             label = self.target_transform(label)
 
         return image, label
+    
+OUTPUT_DIRECTORY = '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/features'
+if not os.path.exists(OUTPUT_DIRECTORY):
+    os.makedirs(OUTPUT_DIRECTORY)
 
 train_transforms = transforms.Compose([transforms.ToTensor()])
 
@@ -133,7 +137,7 @@ indexNames = df[df['size_dim1'] == 1].index
 df.drop(indexNames , inplace=True)
 
 df.to_csv(
-    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed/x_data_information.csv',
+    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/features/x_data_information.csv',
     index=False
     )
 
@@ -150,6 +154,6 @@ for i in tqdm(range(len(train_data)), desc="Processing"):
 y_df.drop(indexNames , inplace=True)
 
 y_df.to_csv(
-    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed/y_data_information.csv',
+    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/features/y_data_information.csv',
     index=False
     )
