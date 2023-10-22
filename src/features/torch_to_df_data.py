@@ -45,7 +45,7 @@ class CustomImageDataset(Dataset):
 
             image = image.resize((new_height, new_width))
 
-        label = self.img_labels.iloc[indexNames, 1]
+        label = self.img_labels.iloc[idx, 1]
         if self.transform:
             image = self.transform(image)
         if self.target_transform:
