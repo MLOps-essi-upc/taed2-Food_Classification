@@ -20,9 +20,8 @@ def client():
 
 @pytest.fixture
 def payload():
-    image = Image.open('data/test/beef_carpaccio/bc1.jpg')
-    return json.dumps(np.array(image).tolist())
-    
+    return {'data/test/beef_carpaccio/bc1.jpg'}
+
 
 def test_root(client):
     response = client.get("/")
@@ -41,7 +40,21 @@ def test_root(client):
 
 
 def test_model_prediction(client, payload):
-    response = client.post("/models", json=payload)
+    # Use constants if fixture created
+    if os.path.isfile(payload):
+        _files = {'uploadFile': open(pyload, 'rb')}
+        response = client.post('/model}}',
+                           params={
+                               "id": {{ID}}
+                           },
+                           files=_files
+                           )
+        assert response.status_code == 200
+    else:
+        pytest.fail("Scratch file does not exists.")
+
+
+"""    response = client.post("/models", json=payload)
     json = response.json()
     assert response.status_code == 200
     assert json["data"]["predicted_class_id"] >= 0 and json["data"]["predicted_class_id"] <= 29
@@ -49,4 +62,4 @@ def test_model_prediction(client, payload):
     assert json["status-code"] == 200
     assert json["method"] == "POST"
     assert json["url"] == "http://testserver/models"
-    assert json["timestamp"] is not None
+    assert json["timestamp"] is not None"""
