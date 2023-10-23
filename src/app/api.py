@@ -1,7 +1,6 @@
 """Main script: it includes our API initialization and (3) endpoints."""
 # '/' is the root endpoint.
-# '/models' returns the list of available models and their metrics. (Optional: use 'type' to filter the models).
-# '/models/{type}' returns the prediction of the model specified in the path parameter.
+# '/models' returns the prediction of the model.
 
 import pickle
 import numpy as np
@@ -28,9 +27,8 @@ app = FastAPI(
 )
 
 
-# Create 2 extra functions: `construct_response()` and `_load_models()`.
+# Create 2 extra functions: `construct_response()`
 # `construct_response()` will be used as a wrapper to return the response in a JSON format.
-# `_load_models()` will be used to load all the models found in `models/` directory.
 
 
 
