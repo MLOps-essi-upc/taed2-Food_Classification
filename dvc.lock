@@ -4,9 +4,9 @@ stages:
     cmd: python3 src/features/download_data.py
     outs:
     - path: data/raw
-      md5: 7319718c473f1fd17a58100cb19fa6e7.dir
-      size: 5116621947
-      nfiles: 101000
+      md5: 09b1c2b63ab710dd6bc43c48182f2d98.dir
+      size: 5117068698
+      nfiles: 101014
   evaluation:
     cmd: python3 src/models/evaluate.py
     deps:
@@ -23,18 +23,13 @@ stages:
     - path: src/models/predict_model.py
       md5: 1f7b36f57b79af0d209d29055b32a137
       size: 1275
-    outs:
-    - path: data/test
-      md5: 3e49f649b80c28bc7df7d86fd9bab735.dir
-      size: 10805229
-      nfiles: 36
   preprocess:
     cmd: python3 src/features/preprocess_data.py
     deps:
     - path: data/raw
-      md5: 5a229a3451068c53daf7c2633b3ca885.dir
-      size: 5116622108
-      nfiles: 101001
+      md5: 09b1c2b63ab710dd6bc43c48182f2d98.dir
+      size: 5117068698
+      nfiles: 101014
     - path: src/features/preprocess_data.py
       md5: a496bce8331f6a7e8dee3e72cff04c6c
       size: 2188
