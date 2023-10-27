@@ -13,29 +13,27 @@ import random
 import torchvision.transforms as transforms
 from PIL import Image
 
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'*2))
+
+# Add to root_dir the path to the processed data folder
+PROCESSED_DIR = os.path.join(ROOT_DIR, 'data/processed')
+RAW_DIR = os.path.join(ROOT_DIR, 'data/raw')
+
 random.seed(42)
 
-# Input and output directories
-INPUT_DATA_DIR = (
-    "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/raw"
-    )
-OUTPUT_DATA_DIR = (
-    "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed"
-    )
-
 # Remove the contents of the output directory if it exists
-if os.path.exists(OUTPUT_DATA_DIR):
-    shutil.rmtree(OUTPUT_DATA_DIR)
+if os.path.exists(PROCESSED_DIR):
+    shutil.rmtree(PROCESSED_DIR)
 
 # Get the list of available folders in data/raw
-all_folders = os.listdir(INPUT_DATA_DIR)
+all_folders = os.listdir(RAW_DIR)
 
 # Select 30 folders
 random.shuffle(all_folders)
 selected_folders = all_folders[:30]
 
 # Create the directory structure in data/processed
-os.makedirs(OUTPUT_DATA_DIR)
+os.makedirs(PROCESSED_DIR)
 
 transform_list = [
     transforms.RandomResizedCrop(224),
@@ -49,8 +47,8 @@ train_transforms = transforms.Compose(transform_list)
 
 # Iterate through the selected folders and copy them to data/processed
 for folder in selected_folders:
-    src_folder = os.path.join(INPUT_DATA_DIR, folder)
-    dest_folder = os.path.join(OUTPUT_DATA_DIR, folder)
+    src_folder = os.path.join(RAW_DIR, folder)
+    dest_folder = os.path.join(PROCESSED_DIR, folder)
 
     os.makedirs(dest_folder)  # Create the destination directory
 

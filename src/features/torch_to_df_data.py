@@ -13,6 +13,13 @@ from torch.utils.data import Dataset, ConcatDataset
 from torchvision.io import read_image
 from tqdm import tqdm
 
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'*2))
+
+# Add to root_dir the path to the processed data folder
+PROCESSED_DIR = os.path.join(ROOT_DIR, 'data/processed')
+RAW_DIR = os.path.join(ROOT_DIR, 'data/raw')
+FEATURES_DIR = os.path.join(ROOT_DIR, 'data/features')
+
 class CustomImageDataset(Dataset):
     """
     Custom dataset for loading and transforming food image data.
@@ -53,9 +60,8 @@ class CustomImageDataset(Dataset):
 
         return image, label
     
-OUTPUT_DIRECTORY = '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/features'
-if not os.path.exists(OUTPUT_DIRECTORY):
-    os.makedirs(OUTPUT_DIRECTORY)
+if not os.path.exists(FEATURES_DIR):
+    os.makedirs(FEATURES_DIR)
 
 train_transforms = transforms.Compose([transforms.ToTensor()])
 
@@ -69,9 +75,7 @@ FIRST_FIRST = True
 dictionary = {}
 IDX = 0
 
-for dirname, _, filenames in os.walk(
-    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/processed'
-    ):
+for dirname, _, filenames in os.walk(PROCESSED_DIR):
     if FIRST is True:
         LABEL = dirname[len('/kaggle/input/data-food/external/'):]
         columns = ['file', 'label']
@@ -137,7 +141,7 @@ indexNames = df[df['size_dim1'] == 1].index
 df.drop(indexNames , inplace=True)
 
 df.to_csv(
-    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/features/x_data_information.csv',
+    os.path.join(FEATURES_DIR, 'x_data_information.csv'),
     index=False
     )
 
@@ -154,6 +158,6 @@ for i in tqdm(range(len(train_data)), desc="Processing"):
 y_df.drop(indexNames , inplace=True)
 
 y_df.to_csv(
-    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/features/y_data_information.csv',
+    os.path.join(FEATURES_DIR, 'y_data_information.csv'),
     index=False
     )

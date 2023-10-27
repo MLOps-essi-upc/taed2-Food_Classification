@@ -13,26 +13,21 @@ import torchvision.models as models
 import pandas as pd
 from predict_model import predict_image
 
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'*2))
 
-#root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'*2))
-#data_dir = os.path.join(root_dir, 'data/processed')
-
-# set the working directory
-os.chdir("/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification")
+# Add to root_dir the path to the processed data folder
+TEST_DIR = os.path.join(ROOT_DIR, 'data/test')
+MODELS_DIR = os.path.join(ROOT_DIR, 'models')
 
 # Cargar el modelo previamente entrenado
 resnet34 = models.resnet34()
-resnet34.load_state_dict(torch.load("models/RESNET34", map_location=torch.device('cpu')))
+resnet34.load_state_dict(torch.load(os.path.join(MODELS_DIR, 'RESNET34'), map_location=torch.device('cpu')))
 resnet34.eval()
 
 # Directorio de prueba
-TEST_DATA_DIR = (
-    '/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/test/food_test_1'
-    )
+TEST_DATA_DIR = os.path.join(TEST_DIR, 'food_test_1')
 
-clases_df = pd.read_csv(
-    "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/models/Output-Food-Dictionary.csv"
-    )
+clases_df = pd.read_csv(os.path.join(MODELS_DIR, 'Output-Food-Dictionary.csv'))
 
 # Inicializar la cantidad total de imágenes y el contador de predicciones correctas
 TOTAL_IMAGES = 0
