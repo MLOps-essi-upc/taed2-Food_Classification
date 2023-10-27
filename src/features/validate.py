@@ -7,6 +7,12 @@ the Great Expectations library for a food image dataset.
 
 import great_expectations as gx
 import pandas as pd
+import os
+
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'*2))
+
+# Add to root_dir the path to the processed data folder
+FEATURES_DIR = os.path.join(ROOT_DIR, 'data/features/')
 
 # Get the data context
 context = gx.get_context()
@@ -19,12 +25,8 @@ context.add_or_update_expectation_suite("food_training_suite")
 # Add a Pandas datasource to our context
 datasource = context.sources.add_or_update_pandas(name="food_dataset")
 
-PROCESSED_DATA_DIR = (
-    "/Users/violeta/Desktop/gced/Q7/TAED2/project1/taed2-Food_Classification/data/features/"
-    )
-
-x_train = pd.read_csv(PROCESSED_DATA_DIR + "x_data_information.csv")
-y_train = pd.read_csv(PROCESSED_DATA_DIR + "y_data_information.csv")
+x_train = pd.read_csv(FEATURES_DIR + "x_data_information.csv")
+y_train = pd.read_csv(FEATURES_DIR + "y_data_information.csv")
 
 train = pd.concat([x_train, y_train], axis=1)
 
