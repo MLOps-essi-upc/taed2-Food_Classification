@@ -1,14 +1,13 @@
 """
 Module Name: test_specific_class.py
 
-This module tests the output of the model for a given input image.
+This module tests the output of the model for a given input image (test the model for a specific class)..
 """
 
 import os
 import torch
 from PIL import Image
 from torchvision import models
-from src import ROOT_DIR
 from src.models.predict_model import predict_image
 import pytest
 
