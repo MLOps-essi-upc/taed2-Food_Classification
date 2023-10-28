@@ -1,0 +1,5 @@
+[tool.coverage.run]
+omit = ["src/features/download_data.py", "src/features/preprocess_data.py", "src/features/torch_to_df_data.py",]
+
+[tool.pytest.ini_options]
+addopts = "--junitxml=out/tests-report.xml --cov=src --cov-report=html:out/coverage"
