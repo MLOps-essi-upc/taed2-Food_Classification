@@ -1,28 +1,30 @@
-"""Main script: it includes our API initialization and (3) endpoints."""
-# '/' is the root endpoint.
-# '/models' returns the prediction of the model.
+"""
+Module Name: api.py
 
-import pickle
-import numpy as np
+Main script: it includes our API initialization and (3) endpoints.
+'/' is the root endpoint.
+'/models' returns the prediction of the model.
+"""
+
+
 import os
 
-from PIL import Image
 from datetime import datetime
 from functools import wraps
 from http import HTTPStatus
-from typing import List
-import torch
-import torchvision.models as models
-import torchvision.transforms as transforms
-from fastapi import FastAPI, HTTPException, Request, UploadFile, File
 from pathlib import Path
-from src.app.schemas import FoodClass, ImageUploadPayload
+import torch
+from torchvision import models, transforms
+from fastapi import FastAPI, Request, UploadFile
+from src.app.schemas import ImageUploadPayload
 from src.app.food_data import class_id_to_class_name, food_class_info
+from PIL import Image
 
 # Define application
 app = FastAPI(
     title="Food Classification API",
-    description="This API lets you make predictions on the Food101 dataset using a ResNet-34 model.",
+    description=("This API lets you make predictions on the Food101 dataset "
+                 "using a ResNet-34 model."),
     version="1.0",
 )
 
@@ -32,12 +34,12 @@ app = FastAPI(
 
 
 
-def construct_response(f):
+def construct_response(func):
     """Construct a JSON response for an endpoint's results."""
 
-    @wraps(f)
+    @wraps(func)
     def wrap(request: Request, *args, **kwargs):
-        results = f(request, *args, **kwargs)
+        results = func(request, *args, **kwargs)
 
         # Construct response
         response = {
@@ -73,15 +75,15 @@ def _load_models():
     # with open(path, "rb") as file:
     #     model_wrapper = pickle.load(file)
     #     model_wrappers_list.append(model_wrapper)
-    
+
     # Path to the models folder
     path = os.path.dirname(os.path.abspath("__file__"))
-    ROOT_DIR = Path(Path(path).resolve())
-    MODELS_FOLDER_PATH = Path(ROOT_DIR, "models", "RESNET34")
+    root_dir = Path(Path(path).resolve())
+    models_folder_path = Path(root_dir, "models", "RESNET34")
 
     resnet34_model = models.resnet34()
-    resnet34_model.load_state_dict(torch.load(MODELS_FOLDER_PATH, map_location=torch.device('cpu')))
-    ##with open(MODELS_FOLDER_PATH / "RESNET34", "rb") as pickled_model:
+    resnet34_model.load_state_dict(torch.load(models_folder_path))
+    ##with open(models_folder_path / "RESNET34", "rb") as pickled_model:
         ##resnet34_model = pickle.load(pickled_model)
 
     return resnet34_model
@@ -106,6 +108,8 @@ def _index(request: Request):
 #@app.post("/predict", tags=["Prediction"])
 #@construct_response
 def process_uploaded_image(payload: ImageUploadPayload):
+    """Process the uploaded image."""
+
     # Access the uploaded image using payload.file
     uploaded_image = payload.file
 
@@ -115,7 +119,8 @@ def process_uploaded_image(payload: ImageUploadPayload):
     # To-Do 1: Check dimensions.
     # Resize the input image to (224, 224) dimensions.
     # Retain only the first three channels (R, G, B) using [..., :3].
-    # Expands the dimensions by adding an extra dimension at the beginning (converts it to a 4D array).
+    # Expands the dimensions by adding an extra dimension at the
+    # beginning (converts it to a 4D array).
 
     preprocess = transforms.Compose([transforms.ToTensor()])
     image = preprocess(image)
@@ -127,12 +132,12 @@ def process_uploaded_image(payload: ImageUploadPayload):
 
     # To-Do 3: Convert the data type of the image to float32 if it's not already.
     image = image.float()
-    """
-    response = {
-        "message": HTTPStatus.OK.phrase,
-        "status-code": HTTPStatus.OK,
-        "data": {"image": image},
-    }"""
+
+    #response = {
+    #    "message": HTTPStatus.OK.phrase,
+    #    "status-code": HTTPStatus.OK,
+    #    "data": {"image": image},
+    #}
 
     return image
 
@@ -142,8 +147,7 @@ def get_class_name(class_id):
     """Convert a label ID to its corresponding name."""
     if class_id[0].item() in class_id_to_class_name:
         return class_id_to_class_name[class_id[0].item()]
-    else:
-        return "Unknown"
+    return "Unknown"
 
 
 
@@ -164,8 +168,8 @@ def _predict(request: Request, file: UploadFile):  # Change payload to accept im
     output = model(image)
 
     #Compute the softmax to get probabilities
-    output = torch.softmax(output, dim=1)  
-    probs, idxs = output.topk(1) 
+    output = torch.softmax(output, dim=1)
+    _, idxs = output.topk(1)
     prediction_name = get_class_name(idxs)
 
     # Access extra information for the predicted food class
