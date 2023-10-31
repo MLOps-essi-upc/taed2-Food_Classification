@@ -80,8 +80,6 @@ The ultimate aim of our project is to make a meaningful contribution to the fiel
     │ 
     ├── dvc.look
     │ 
-    ├── kaggle.json
-    │ 
     ├── pyproject.toml
     │ 
     └── tox.ini            <- Tox file with settings for running tox.
